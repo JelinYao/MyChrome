@@ -1,0 +1,18 @@
+#pragma once
+
+
+
+
+
+enum{
+	WM_MAINWNDMSG_BASE = WM_USER + 200,
+	WM_SETTITLE_MSG,
+	WM_OPENURL_MSG,
+	WM_SET_STATE_TEXT_MSG,
+};
+
+
+enum{
+	TIMER_ID_BASE = 100,
+	TIMER_ID_STATUS_TEXT,
+};

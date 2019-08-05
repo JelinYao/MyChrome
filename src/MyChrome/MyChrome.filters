@@ -1,0 +1,445 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="源文件">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="头文件">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="资源文件">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav</Extensions>
+    </Filter>
+    <Filter Include="Dui">
+      <UniqueIdentifier>{74e6d266-c663-48e5-8abd-a7ac5fd28328}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Dui\Cef">
+      <UniqueIdentifier>{86558e9f-702e-415f-8c3c-2f74fd252d97}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Dui\Cef\Base">
+      <UniqueIdentifier>{793ed7fc-ab0b-4e2b-bcaa-c381946f997b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Dui\Cef\Include">
+      <UniqueIdentifier>{8d5d5965-9ec7-4f7b-b938-e181dc9793e1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Dui\ScrollTab">
+      <UniqueIdentifier>{9dcb708c-32ac-4def-a4b3-d8175eef69ed}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Dui\EditMenu">
+      <UniqueIdentifier>{17c88123-75b2-4321-9523-f00ad91b778c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ThirdPart">
+      <UniqueIdentifier>{fe27aa4c-2dae-4f64-804b-c79a83c40946}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ThirdPart\Common">
+      <UniqueIdentifier>{9320eb94-94d1-411c-877d-8b6fc6ca3b2f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Config">
+      <UniqueIdentifier>{29e648cb-c215-44be-9f17-ef4cb8582fc7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Dui\ColorSkin">
+      <UniqueIdentifier>{b4d8afed-cac9-4732-a686-4100dc71b24d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Skin">
+      <UniqueIdentifier>{0a49b28a-4794-4b43-ba87-1913932b3aee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ThirdPart\MiscUI">
+      <UniqueIdentifier>{b3deb571-1f2b-4035-a7f8-8e1aa62bb4ed}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Wnd">
+      <UniqueIdentifier>{c80313bf-4e4b-4985-a553-f23c8e320e3e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Dui\Menu">
+      <UniqueIdentifier>{6d4f9c8d-9588-45ff-bc3f-e8b8ccc734fb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Wnd\MainWnd">
+      <UniqueIdentifier>{54a37eb9-68ba-4a2e-a001-61ffb5a316dd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Wnd\AboutWnd">
+      <UniqueIdentifier>{1ab0e96e-3a1c-4f1f-ba89-5f8efee3d05e}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Main.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Stdafx.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="cef\UICefWebkit.cpp">
+      <Filter>Dui\Cef</Filter>
+    </ClCompile>
+    <ClCompile Include="ScrollOptionUI.cpp">
+      <Filter>Dui\ScrollTab</Filter>
+    </ClCompile>
+    <ClCompile Include="ScrollTabUI.cpp">
+      <Filter>Dui\ScrollTab</Filter>
+    </ClCompile>
+    <ClCompile Include="EditMenuWnd.cpp">
+      <Filter>Dui\EditMenu</Filter>
+    </ClCompile>
+    <ClCompile Include="ThirdPart\Common\Common.cpp">
+      <Filter>ThirdPart\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="Config\Config.cpp">
+      <Filter>Config</Filter>
+    </ClCompile>
+    <ClCompile Include="SkinWnd\UIColorSkin.cpp">
+      <Filter>Dui\ColorSkin</Filter>
+    </ClCompile>
+    <ClCompile Include="SkinWnd\SkinWnd.cpp">
+      <Filter>Skin</Filter>
+    </ClCompile>
+    <ClCompile Include="cef\CefBase\CefAppEx.cpp">
+      <Filter>Dui\Cef\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="cef\CefBase\CefHandler.cpp">
+      <Filter>Dui\Cef\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="cef\CefBase\CEfV8Handler.cpp">
+      <Filter>Dui\Cef\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="cef\CefBase\client_app.cpp">
+      <Filter>Dui\Cef\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="cef\CefBase\client_app_browser.cpp">
+      <Filter>Dui\Cef\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="cef\CefBase\client_app_other.cpp">
+      <Filter>Dui\Cef\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="cef\CefBase\client_app_renderer.cpp">
+      <Filter>Dui\Cef\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="cef\CefBase\client_renderer.cpp">
+      <Filter>Dui\Cef\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="cef\CefBase\client_switches.cpp">
+      <Filter>Dui\Cef\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="cef\CefBase\main_message_loop.cc">
+      <Filter>Dui\Cef\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="cef\CefBase\main_message_loop_multithreaded_win.cc">
+      <Filter>Dui\Cef\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="cef\CefBase\main_message_loop_std.cc">
+      <Filter>Dui\Cef\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="cef\CefBase\util_win.cc">
+      <Filter>Dui\Cef\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="ChromePage.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="cef\Win32Wnd.cpp">
+      <Filter>Dui\Cef</Filter>
+    </ClCompile>
+    <ClCompile Include="MiscUI\WaterEffect.cpp">
+      <Filter>ThirdPart\MiscUI</Filter>
+    </ClCompile>
+    <ClCompile Include="WaterEffectUI.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Menu\MyMenuUI.cpp">
+      <Filter>Dui\Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="AboutWnd.cpp">
+      <Filter>Wnd\AboutWnd</Filter>
+    </ClCompile>
+    <ClCompile Include="MainWnd.cpp">
+      <Filter>Wnd\MainWnd</Filter>
+    </ClCompile>
+    <ClCompile Include="MainWnd_Callback.cpp">
+      <Filter>Wnd\MainWnd</Filter>
+    </ClCompile>
+    <ClCompile Include="MainWnd_Msg.cpp">
+      <Filter>Wnd\MainWnd</Filter>
+    </ClCompile>
+    <ClCompile Include="MainWnd_Notify.cpp">
+      <Filter>Wnd\MainWnd</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="resource.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="cef\UICefWebkit.h">
+      <Filter>Dui\Cef</Filter>
+    </ClInclude>
+    <ClInclude Include="cef\include\cef_app.h">
+      <Filter>Dui\Cef\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="cef\include\cef_auth_callback.h">
+      <Filter>Dui\Cef\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="cef\include\cef_base.h">
+      <Filter>Dui\Cef\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="cef\include\cef_browser.h">
+      <Filter>Dui\Cef\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="cef\include\cef_browser_process_handler.h">
+      <Filter>Dui\Cef\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="cef\include\cef_callback.h">
+      <Filter>Dui\Cef\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="cef\include\cef_client.h">
+      <Filter>Dui\Cef\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="cef\include\cef_command_line.h">
+      <Filter>Dui\Cef\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="cef\include\cef_context_menu_handler.h">
+      <Filter>Dui\Cef\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="cef\include\cef_cookie.h">
+      <Filter>Dui\Cef\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="cef\include\cef_dialog_handler.h">
+      <Filter>Dui\Cef\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="cef\include\cef_display_handler.h">
+      <Filter>Dui\Cef\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="cef\include\cef_dom.h">
+      <Filter>Dui\Cef\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="cef\include\cef_download_handler.h">
+      <Filter>Dui\Cef\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="cef\include\cef_download_item.h">
+      <Filter>Dui\Cef\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="cef\include\cef_drag_data.h">
+      <Filter>Dui\Cef\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="cef\include\cef_drag_handler.h">
+      <Filter>Dui\Cef\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="cef\include\cef_focus_handler.h">
+      <Filter>Dui\Cef\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="cef\include\cef_frame.h">
+      <Filter>Dui\Cef\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="cef\include\cef_geolocation.h">
+      <Filter>Dui\Cef\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="cef\include\cef_geolocation_handler.h">
+      <Filter>Dui\Cef\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="cef\include\cef_jsdialog_handler.h">
+      <Filter>Dui\Cef\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="cef\include\cef_keyboard_handler.h">
+      <Filter>Dui\Cef\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="cef\include\cef_life_span_handler.h">
+      <Filter>Dui\Cef\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="cef\include\cef_load_handler.h">
+      <Filter>Dui\Cef\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="cef\include\cef_menu_model.h">
+      <Filter>Dui\Cef\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="cef\include\cef_origin_whitelist.h">
+      <Filter>Dui\Cef\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="cef\include\cef_pack_resources.h">
+      <Filter>Dui\Cef\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="cef\include\cef_pack_strings.h">
+      <Filter>Dui\Cef\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="cef\include\cef_path_util.h">
+      <Filter>Dui\Cef\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="cef\include\cef_process_message.h">
+      <Filter>Dui\Cef\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="cef\include\cef_process_util.h">
+      <Filter>Dui\Cef\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="cef\include\cef_render_handler.h">
+      <Filter>Dui\Cef\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="cef\include\cef_render_process_handler.h">
+      <Filter>Dui\Cef\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="cef\include\cef_request.h">
+      <Filter>Dui\Cef\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="cef\include\cef_request_context.h">
+      <Filter>Dui\Cef\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="cef\include\cef_request_context_handler.h">
+      <Filter>Dui\Cef\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="cef\include\cef_request_handler.h">
+      <Filter>Dui\Cef\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="cef\include\cef_resource_bundle_handler.h">
+      <Filter>Dui\Cef\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="cef\include\cef_resource_handler.h">
+      <Filter>Dui\Cef\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="cef\include\cef_response.h">
+      <Filter>Dui\Cef\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="cef\include\cef_runnable.h">
+      <Filter>Dui\Cef\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="cef\include\cef_scheme.h">
+      <Filter>Dui\Cef\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="cef\include\cef_stream.h">
+      <Filter>Dui\Cef\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="cef\include\cef_string_visitor.h">
+      <Filter>Dui\Cef\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="cef\include\cef_task.h">
+      <Filter>Dui\Cef\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="cef\include\cef_trace.h">
+      <Filter>Dui\Cef\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="cef\include\cef_trace_event.h">
+      <Filter>Dui\Cef\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="cef\include\cef_url.h">
+      <Filter>Dui\Cef\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="cef\include\cef_urlrequest.h">
+      <Filter>Dui\Cef\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="cef\include\cef_v8.h">
+      <Filter>Dui\Cef\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="cef\include\cef_values.h">
+      <Filter>Dui\Cef\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="cef\include\cef_version.h">
+      <Filter>Dui\Cef\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="cef\include\cef_web_plugin.h">
+      <Filter>Dui\Cef\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="cef\include\cef_xml_reader.h">
+      <Filter>Dui\Cef\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="cef\include\cef_zip_reader.h">
+      <Filter>Dui\Cef\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="ScrollOptionUI.h">
+      <Filter>Dui\ScrollTab</Filter>
+    </ClInclude>
+    <ClInclude Include="ScrollTabUI.h">
+      <Filter>Dui\ScrollTab</Filter>
+    </ClInclude>
+    <ClInclude Include="EditMenuWnd.h">
+      <Filter>Dui\EditMenu</Filter>
+    </ClInclude>
+    <ClInclude Include="ThirdPart\Common\Common.h">
+      <Filter>ThirdPart\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Config\Config.h">
+      <Filter>Config</Filter>
+    </ClInclude>
+    <ClInclude Include="SkinWnd\UIColorSkin.h">
+      <Filter>Dui\ColorSkin</Filter>
+    </ClInclude>
+    <ClInclude Include="SkinWnd\SkinManager.h">
+      <Filter>Skin</Filter>
+    </ClInclude>
+    <ClInclude Include="SkinWnd\SkinWnd.h">
+      <Filter>Skin</Filter>
+    </ClInclude>
+    <ClInclude Include="cef\CefBase\CefAppEx.h">
+      <Filter>Dui\Cef\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="cef\CefBase\CefHandler.h">
+      <Filter>Dui\Cef\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="cef\CefBase\CEfV8Handler.h">
+      <Filter>Dui\Cef\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="cef\CefBase\client_app.h">
+      <Filter>Dui\Cef\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="cef\CefBase\client_app_browser.h">
+      <Filter>Dui\Cef\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="cef\CefBase\client_app_other.h">
+      <Filter>Dui\Cef\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="cef\CefBase\client_app_renderer.h">
+      <Filter>Dui\Cef\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="cef\CefBase\client_renderer.h">
+      <Filter>Dui\Cef\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="cef\CefBase\client_switches.h">
+      <Filter>Dui\Cef\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="cef\CefBase\Delegate.h">
+      <Filter>Dui\Cef\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="cef\CefBase\main_message_loop.h">
+      <Filter>Dui\Cef\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="cef\CefBase\main_message_loop_multithreaded_win.h">
+      <Filter>Dui\Cef\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="cef\CefBase\main_message_loop_std.h">
+      <Filter>Dui\Cef\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="cef\CefBase\util.h">
+      <Filter>Dui\Cef\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="cef\CefBase\util_win.h">
+      <Filter>Dui\Cef\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="ChromePage.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="cef\Win32Wnd.h">
+      <Filter>Dui\Cef</Filter>
+    </ClInclude>
+    <ClInclude Include="MiscUI\WaterEffect.h">
+      <Filter>ThirdPart\MiscUI</Filter>
+    </ClInclude>
+    <ClInclude Include="WaterEffectUI.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Menu\MyMenuUI.h">
+      <Filter>Dui\Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="AboutWnd.h">
+      <Filter>Wnd\AboutWnd</Filter>
+    </ClInclude>
+    <ClInclude Include="MainWnd.h">
+      <Filter>Wnd\MainWnd</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="MyChrome.rc">
+      <Filter>资源文件</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Res\web.ico">
+      <Filter>资源文件</Filter>
+    </None>
+  </ItemGroup>
+</Project>

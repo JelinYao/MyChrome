@@ -1,0 +1,271 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{F7889067-B99A-4D3B-A168-AE52A794A5C2}</ProjectGuid>
+    <RootNamespace>MyChrome</RootNamespace>
+    <Keyword>Win32Proj</Keyword>
+    <ProjectName>MyChrome</ProjectName>
+    <WindowsTargetPlatformVersion>7.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <PlatformToolset>v141_xp</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v141_xp</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.40219.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\bin\$(Configuration)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\build\$(ProjectName)\$(Configuration)\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</LinkIncremental>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\bin\$(Configuration)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\build\$(ProjectName)\$(Configuration)\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkIncremental>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">MyChrome</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <TargetName>MyChrome</TargetName>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>./;./cef/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions);UILIB_EXPORTS_LIB</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderOutputFile>$(IntDir)StdAfx.pch</PrecompiledHeaderOutputFile>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <TargetMachine>MachineX86</TargetMachine>
+      <UACExecutionLevel>AsInvoker</UACExecutionLevel>
+      <AdditionalLibraryDirectories>..\..\lib\$(Configuration)\</AdditionalLibraryDirectories>
+      <IgnoreSpecificDefaultLibraries>atlsd.lib</IgnoreSpecificDefaultLibraries>
+      <AdditionalDependencies>Duilib.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <Optimization>MaxSpeed</Optimization>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <AdditionalIncludeDirectories>./;./cef;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>UILIB_EXPORTS_LIB;WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <TargetMachine>MachineX86</TargetMachine>
+      <UACExecutionLevel>RequireAdministrator</UACExecutionLevel>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+      <AdditionalLibraryDirectories>..\..\lib\$(Configuration)\</AdditionalLibraryDirectories>
+      <AdditionalDependencies>Duilib.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <IgnoreSpecificDefaultLibraries>atlsd.lib</IgnoreSpecificDefaultLibraries>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="AboutWnd.cpp" />
+    <ClCompile Include="cef\CefBase\CefAppEx.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="cef\CefBase\CefHandler.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="cef\CefBase\CEfV8Handler.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="cef\CefBase\client_app.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="cef\CefBase\client_app_browser.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="cef\CefBase\client_app_other.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="cef\CefBase\client_app_renderer.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="cef\CefBase\client_renderer.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="cef\CefBase\client_switches.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="cef\CefBase\main_message_loop.cc">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="cef\CefBase\main_message_loop_multithreaded_win.cc">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="cef\CefBase\main_message_loop_std.cc">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="cef\CefBase\util_win.cc">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="cef\Win32Wnd.cpp" />
+    <ClCompile Include="ChromePage.cpp" />
+    <ClCompile Include="Config\Config.cpp" />
+    <ClCompile Include="EditMenuWnd.cpp" />
+    <ClCompile Include="JsBind\JsBind.cpp" />
+    <ClCompile Include="Main.cpp" />
+    <ClCompile Include="MainWnd.cpp" />
+    <ClCompile Include="MainWnd_Callback.cpp" />
+    <ClCompile Include="MainWnd_Msg.cpp" />
+    <ClCompile Include="MainWnd_Notify.cpp" />
+    <ClCompile Include="Menu\MyMenuUI.cpp" />
+    <ClCompile Include="MiscUI\WaterEffect.cpp" />
+    <ClCompile Include="SkinWnd\SkinWnd.cpp" />
+    <ClCompile Include="SkinWnd\UIColorSkin.cpp" />
+    <ClCompile Include="Stdafx.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="cef\UICefWebkit.cpp" />
+    <ClCompile Include="TabBar\UITabBar.cpp" />
+    <ClCompile Include="TabBar\UITabItem.cpp" />
+    <ClCompile Include="ThirdPart\Common\Common.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="AboutWnd.h" />
+    <ClInclude Include="cef\CefBase\CefAppEx.h" />
+    <ClInclude Include="cef\CefBase\CefHandler.h" />
+    <ClInclude Include="cef\CefBase\CEfV8Handler.h" />
+    <ClInclude Include="cef\CefBase\client_app.h" />
+    <ClInclude Include="cef\CefBase\client_app_browser.h" />
+    <ClInclude Include="cef\CefBase\client_app_other.h" />
+    <ClInclude Include="cef\CefBase\client_app_renderer.h" />
+    <ClInclude Include="cef\CefBase\client_renderer.h" />
+    <ClInclude Include="cef\CefBase\client_switches.h" />
+    <ClInclude Include="cef\CefBase\Delegate.h" />
+    <ClInclude Include="cef\CefBase\main_message_loop.h" />
+    <ClInclude Include="cef\CefBase\main_message_loop_multithreaded_win.h" />
+    <ClInclude Include="cef\CefBase\main_message_loop_std.h" />
+    <ClInclude Include="cef\CefBase\PdfPrintCallbackEx.h" />
+    <ClInclude Include="cef\CefBase\util.h" />
+    <ClInclude Include="cef\CefBase\util_win.h" />
+    <ClInclude Include="cef\Win32Wnd.h" />
+    <ClInclude Include="CGlobalMgr.h" />
+    <ClInclude Include="ChromePage.h" />
+    <ClInclude Include="Config\Config.h" />
+    <ClInclude Include="EditMenuWnd.h" />
+    <ClInclude Include="JsBind\JsBind.h" />
+    <ClInclude Include="MainWnd.h" />
+    <ClInclude Include="Menu\MyMenuUI.h" />
+    <ClInclude Include="MiscUI\WaterEffect.h" />
+    <ClInclude Include="MsgDefine.h" />
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="resource1.h" />
+    <ClInclude Include="SkinWnd\SkinManager.h" />
+    <ClInclude Include="SkinWnd\SkinWnd.h" />
+    <ClInclude Include="SkinWnd\UIColorSkin.h" />
+    <ClInclude Include="stdafx.h" />
+    <ClInclude Include="cef\UICefWebkit.h" />
+    <ClInclude Include="cef\include\cef_app.h" />
+    <ClInclude Include="cef\include\cef_auth_callback.h" />
+    <ClInclude Include="cef\include\cef_base.h" />
+    <ClInclude Include="cef\include\cef_browser.h" />
+    <ClInclude Include="cef\include\cef_browser_process_handler.h" />
+    <ClInclude Include="cef\include\cef_callback.h" />
+    <ClInclude Include="cef\include\cef_client.h" />
+    <ClInclude Include="cef\include\cef_command_line.h" />
+    <ClInclude Include="cef\include\cef_context_menu_handler.h" />
+    <ClInclude Include="cef\include\cef_cookie.h" />
+    <ClInclude Include="cef\include\cef_dialog_handler.h" />
+    <ClInclude Include="cef\include\cef_display_handler.h" />
+    <ClInclude Include="cef\include\cef_dom.h" />
+    <ClInclude Include="cef\include\cef_download_handler.h" />
+    <ClInclude Include="cef\include\cef_download_item.h" />
+    <ClInclude Include="cef\include\cef_drag_data.h" />
+    <ClInclude Include="cef\include\cef_drag_handler.h" />
+    <ClInclude Include="cef\include\cef_focus_handler.h" />
+    <ClInclude Include="cef\include\cef_frame.h" />
+    <ClInclude Include="cef\include\cef_geolocation.h" />
+    <ClInclude Include="cef\include\cef_geolocation_handler.h" />
+    <ClInclude Include="cef\include\cef_jsdialog_handler.h" />
+    <ClInclude Include="cef\include\cef_keyboard_handler.h" />
+    <ClInclude Include="cef\include\cef_life_span_handler.h" />
+    <ClInclude Include="cef\include\cef_load_handler.h" />
+    <ClInclude Include="cef\include\cef_menu_model.h" />
+    <ClInclude Include="cef\include\cef_origin_whitelist.h" />
+    <ClInclude Include="cef\include\cef_pack_resources.h" />
+    <ClInclude Include="cef\include\cef_pack_strings.h" />
+    <ClInclude Include="cef\include\cef_path_util.h" />
+    <ClInclude Include="cef\include\cef_process_message.h" />
+    <ClInclude Include="cef\include\cef_process_util.h" />
+    <ClInclude Include="cef\include\cef_render_handler.h" />
+    <ClInclude Include="cef\include\cef_render_process_handler.h" />
+    <ClInclude Include="cef\include\cef_request.h" />
+    <ClInclude Include="cef\include\cef_request_context.h" />
+    <ClInclude Include="cef\include\cef_request_context_handler.h" />
+    <ClInclude Include="cef\include\cef_request_handler.h" />
+    <ClInclude Include="cef\include\cef_resource_bundle_handler.h" />
+    <ClInclude Include="cef\include\cef_resource_handler.h" />
+    <ClInclude Include="cef\include\cef_response.h" />
+    <ClInclude Include="cef\include\cef_runnable.h" />
+    <ClInclude Include="cef\include\cef_scheme.h" />
+    <ClInclude Include="cef\include\cef_stream.h" />
+    <ClInclude Include="cef\include\cef_string_visitor.h" />
+    <ClInclude Include="cef\include\cef_task.h" />
+    <ClInclude Include="cef\include\cef_trace.h" />
+    <ClInclude Include="cef\include\cef_trace_event.h" />
+    <ClInclude Include="cef\include\cef_url.h" />
+    <ClInclude Include="cef\include\cef_urlrequest.h" />
+    <ClInclude Include="cef\include\cef_v8.h" />
+    <ClInclude Include="cef\include\cef_values.h" />
+    <ClInclude Include="cef\include\cef_version.h" />
+    <ClInclude Include="cef\include\cef_web_plugin.h" />
+    <ClInclude Include="cef\include\cef_xml_reader.h" />
+    <ClInclude Include="cef\include\cef_zip_reader.h" />
+    <ClInclude Include="TabBar\UITabBar.h" />
+    <ClInclude Include="TabBar\UITabItem.h" />
+    <ClInclude Include="ThirdPart\Common\Common.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Res\web.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="MyChrome.rc" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
