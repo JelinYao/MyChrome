@@ -1,5 +1,5 @@
 #include "stdafx.h"
-#include "MainWnd.h"
+#include "UI/Wnd/MainWnd.h"
 #include "CefBase/util.h"
 #include "CefBase/CefAppEx.h"
 #include "CefBase/client_app.h"
@@ -70,11 +70,10 @@ INT WINAPI wWinMain( __in HINSTANCE hInstance, __in_opt HINSTANCE hPrevInstance,
 	pWnd->ShowWindow();
 	g_bShareInit.MapSharedMem(sizeof(ShareData), g_szShareGuid);
 	((ShareData*)g_bShareInit)->hWnd = pWnd->GetHWND();
-	//::ShowWindow(pWnd->GetHWND(), SW_SHOWMAXIMIZED);
+	::ShowWindow(pWnd->GetHWND(), SW_SHOWMAXIMIZED);
 	int result = message_loop->Run();
 	CefShutdown();
 	message_loop.reset();
 	return result;
-	return 0;
 }
 

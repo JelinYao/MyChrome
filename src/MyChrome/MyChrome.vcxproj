@@ -55,7 +55,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>./;./cef/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>./;./Libcef/;../../include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions);UILIB_EXPORTS_LIB</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -79,7 +79,7 @@
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>./;./cef;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>./;./Libcef;../../include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>UILIB_EXPORTS_LIB;WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -102,162 +102,254 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="AboutWnd.cpp" />
-    <ClCompile Include="cef\CefBase\CefAppEx.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="cef\CefBase\CefHandler.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="cef\CefBase\CEfV8Handler.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="cef\CefBase\client_app.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="cef\CefBase\client_app_browser.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="cef\CefBase\client_app_other.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="cef\CefBase\client_app_renderer.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="cef\CefBase\client_renderer.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="cef\CefBase\client_switches.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="cef\CefBase\main_message_loop.cc">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="cef\CefBase\main_message_loop_multithreaded_win.cc">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="cef\CefBase\main_message_loop_std.cc">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="cef\CefBase\util_win.cc">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="cef\Win32Wnd.cpp" />
-    <ClCompile Include="ChromePage.cpp" />
-    <ClCompile Include="Config\Config.cpp" />
-    <ClCompile Include="EditMenuWnd.cpp" />
-    <ClCompile Include="JsBind\JsBind.cpp" />
+    <ClCompile Include="Libcef\CefBase\CefAppEx.cpp" />
+    <ClCompile Include="Libcef\CefBase\CefHandler.cpp" />
+    <ClCompile Include="Libcef\CefBase\CEfV8Handler.cpp" />
+    <ClCompile Include="Libcef\CefBase\client_app.cpp" />
+    <ClCompile Include="Libcef\CefBase\client_app_browser.cpp" />
+    <ClCompile Include="Libcef\CefBase\client_app_other.cpp" />
+    <ClCompile Include="Libcef\CefBase\client_app_renderer.cpp" />
+    <ClCompile Include="Libcef\CefBase\client_renderer.cpp" />
+    <ClCompile Include="Libcef\CefBase\client_switches.cpp" />
+    <ClCompile Include="Libcef\CefBase\main_message_loop.cc" />
+    <ClCompile Include="Libcef\CefBase\main_message_loop_multithreaded_win.cc" />
+    <ClCompile Include="Libcef\CefBase\main_message_loop_std.cc" />
+    <ClCompile Include="Libcef\CefBase\util_win.cc" />
+    <ClCompile Include="Libcef\JsBind\JsBind.cpp" />
+    <ClCompile Include="Libcef\UICefWebkit.cpp" />
+    <ClCompile Include="Libcef\Win32Wnd.cpp" />
     <ClCompile Include="Main.cpp" />
-    <ClCompile Include="MainWnd.cpp" />
-    <ClCompile Include="MainWnd_Callback.cpp" />
-    <ClCompile Include="MainWnd_Msg.cpp" />
-    <ClCompile Include="MainWnd_Notify.cpp" />
-    <ClCompile Include="Menu\MyMenuUI.cpp" />
-    <ClCompile Include="MiscUI\WaterEffect.cpp" />
-    <ClCompile Include="SkinWnd\SkinWnd.cpp" />
-    <ClCompile Include="SkinWnd\UIColorSkin.cpp" />
     <ClCompile Include="Stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="cef\UICefWebkit.cpp" />
-    <ClCompile Include="TabBar\UITabBar.cpp" />
-    <ClCompile Include="TabBar\UITabItem.cpp" />
     <ClCompile Include="ThirdPart\Common\Common.cpp" />
+    <ClCompile Include="ThirdPart\MiscUI\WaterEffect.cpp" />
+    <ClCompile Include="UI\Menu\MyMenuUI.cpp" />
+    <ClCompile Include="UI\Page\ChromePage.cpp" />
+    <ClCompile Include="UI\SkinMgr\SkinWnd.cpp" />
+    <ClCompile Include="UI\SkinMgr\UIColorSkin.cpp" />
+    <ClCompile Include="UI\TabBar\UITabBar.cpp" />
+    <ClCompile Include="UI\TabBar\UITabItem.cpp" />
+    <ClCompile Include="UI\Wnd\AboutWnd.cpp" />
+    <ClCompile Include="UI\Wnd\EditMenuWnd.cpp" />
+    <ClCompile Include="UI\Wnd\MainWnd.cpp" />
+    <ClCompile Include="UI\Wnd\MainWnd_Callback.cpp" />
+    <ClCompile Include="UI\Wnd\MainWnd_Msg.cpp" />
+    <ClCompile Include="UI\Wnd\MainWnd_Notify.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="AboutWnd.h" />
-    <ClInclude Include="cef\CefBase\CefAppEx.h" />
-    <ClInclude Include="cef\CefBase\CefHandler.h" />
-    <ClInclude Include="cef\CefBase\CEfV8Handler.h" />
-    <ClInclude Include="cef\CefBase\client_app.h" />
-    <ClInclude Include="cef\CefBase\client_app_browser.h" />
-    <ClInclude Include="cef\CefBase\client_app_other.h" />
-    <ClInclude Include="cef\CefBase\client_app_renderer.h" />
-    <ClInclude Include="cef\CefBase\client_renderer.h" />
-    <ClInclude Include="cef\CefBase\client_switches.h" />
-    <ClInclude Include="cef\CefBase\Delegate.h" />
-    <ClInclude Include="cef\CefBase\main_message_loop.h" />
-    <ClInclude Include="cef\CefBase\main_message_loop_multithreaded_win.h" />
-    <ClInclude Include="cef\CefBase\main_message_loop_std.h" />
-    <ClInclude Include="cef\CefBase\PdfPrintCallbackEx.h" />
-    <ClInclude Include="cef\CefBase\util.h" />
-    <ClInclude Include="cef\CefBase\util_win.h" />
-    <ClInclude Include="cef\Win32Wnd.h" />
     <ClInclude Include="CGlobalMgr.h" />
-    <ClInclude Include="ChromePage.h" />
-    <ClInclude Include="Config\Config.h" />
-    <ClInclude Include="EditMenuWnd.h" />
-    <ClInclude Include="JsBind\JsBind.h" />
-    <ClInclude Include="MainWnd.h" />
-    <ClInclude Include="Menu\MyMenuUI.h" />
-    <ClInclude Include="MiscUI\WaterEffect.h" />
+    <ClInclude Include="Libcef\CefBase\CefAppEx.h" />
+    <ClInclude Include="Libcef\CefBase\CefHandler.h" />
+    <ClInclude Include="Libcef\CefBase\CEfV8Handler.h" />
+    <ClInclude Include="Libcef\CefBase\client_app.h" />
+    <ClInclude Include="Libcef\CefBase\client_app_browser.h" />
+    <ClInclude Include="Libcef\CefBase\client_app_other.h" />
+    <ClInclude Include="Libcef\CefBase\client_app_renderer.h" />
+    <ClInclude Include="Libcef\CefBase\client_renderer.h" />
+    <ClInclude Include="Libcef\CefBase\client_switches.h" />
+    <ClInclude Include="Libcef\CefBase\Delegate.h" />
+    <ClInclude Include="Libcef\CefBase\main_message_loop.h" />
+    <ClInclude Include="Libcef\CefBase\main_message_loop_multithreaded_win.h" />
+    <ClInclude Include="Libcef\CefBase\main_message_loop_std.h" />
+    <ClInclude Include="Libcef\CefBase\PdfPrintCallbackEx.h" />
+    <ClInclude Include="Libcef\CefBase\util.h" />
+    <ClInclude Include="Libcef\CefBase\util_win.h" />
+    <ClInclude Include="Libcef\include\base\cef_atomicops.h" />
+    <ClInclude Include="Libcef\include\base\cef_atomic_ref_count.h" />
+    <ClInclude Include="Libcef\include\base\cef_basictypes.h" />
+    <ClInclude Include="Libcef\include\base\cef_bind.h" />
+    <ClInclude Include="Libcef\include\base\cef_bind_helpers.h" />
+    <ClInclude Include="Libcef\include\base\cef_build.h" />
+    <ClInclude Include="Libcef\include\base\cef_callback.h" />
+    <ClInclude Include="Libcef\include\base\cef_callback_forward.h" />
+    <ClInclude Include="Libcef\include\base\cef_callback_helpers.h" />
+    <ClInclude Include="Libcef\include\base\cef_callback_list.h" />
+    <ClInclude Include="Libcef\include\base\cef_cancelable_callback.h" />
+    <ClInclude Include="Libcef\include\base\cef_lock.h" />
+    <ClInclude Include="Libcef\include\base\cef_logging.h" />
+    <ClInclude Include="Libcef\include\base\cef_macros.h" />
+    <ClInclude Include="Libcef\include\base\cef_move.h" />
+    <ClInclude Include="Libcef\include\base\cef_platform_thread.h" />
+    <ClInclude Include="Libcef\include\base\cef_ref_counted.h" />
+    <ClInclude Include="Libcef\include\base\cef_scoped_ptr.h" />
+    <ClInclude Include="Libcef\include\base\cef_string16.h" />
+    <ClInclude Include="Libcef\include\base\cef_template_util.h" />
+    <ClInclude Include="Libcef\include\base\cef_thread_checker.h" />
+    <ClInclude Include="Libcef\include\base\cef_thread_collision_warner.h" />
+    <ClInclude Include="Libcef\include\base\cef_trace_event.h" />
+    <ClInclude Include="Libcef\include\base\cef_tuple.h" />
+    <ClInclude Include="Libcef\include\base\cef_weak_ptr.h" />
+    <ClInclude Include="Libcef\include\base\internal\cef_atomicops_x86_msvc.h" />
+    <ClInclude Include="Libcef\include\base\internal\cef_bind_internal.h" />
+    <ClInclude Include="Libcef\include\base\internal\cef_bind_internal_win.h" />
+    <ClInclude Include="Libcef\include\base\internal\cef_callback_internal.h" />
+    <ClInclude Include="Libcef\include\base\internal\cef_lock_impl.h" />
+    <ClInclude Include="Libcef\include\base\internal\cef_raw_scoped_refptr_mismatch_checker.h" />
+    <ClInclude Include="Libcef\include\base\internal\cef_thread_checker_impl.h" />
+    <ClInclude Include="Libcef\include\capi\cef_app_capi.h" />
+    <ClInclude Include="Libcef\include\capi\cef_auth_callback_capi.h" />
+    <ClInclude Include="Libcef\include\capi\cef_base_capi.h" />
+    <ClInclude Include="Libcef\include\capi\cef_browser_capi.h" />
+    <ClInclude Include="Libcef\include\capi\cef_browser_process_handler_capi.h" />
+    <ClInclude Include="Libcef\include\capi\cef_callback_capi.h" />
+    <ClInclude Include="Libcef\include\capi\cef_client_capi.h" />
+    <ClInclude Include="Libcef\include\capi\cef_command_line_capi.h" />
+    <ClInclude Include="Libcef\include\capi\cef_context_menu_handler_capi.h" />
+    <ClInclude Include="Libcef\include\capi\cef_cookie_capi.h" />
+    <ClInclude Include="Libcef\include\capi\cef_dialog_handler_capi.h" />
+    <ClInclude Include="Libcef\include\capi\cef_display_handler_capi.h" />
+    <ClInclude Include="Libcef\include\capi\cef_dom_capi.h" />
+    <ClInclude Include="Libcef\include\capi\cef_download_handler_capi.h" />
+    <ClInclude Include="Libcef\include\capi\cef_download_item_capi.h" />
+    <ClInclude Include="Libcef\include\capi\cef_drag_data_capi.h" />
+    <ClInclude Include="Libcef\include\capi\cef_drag_handler_capi.h" />
+    <ClInclude Include="Libcef\include\capi\cef_find_handler_capi.h" />
+    <ClInclude Include="Libcef\include\capi\cef_focus_handler_capi.h" />
+    <ClInclude Include="Libcef\include\capi\cef_frame_capi.h" />
+    <ClInclude Include="Libcef\include\capi\cef_geolocation_capi.h" />
+    <ClInclude Include="Libcef\include\capi\cef_geolocation_handler_capi.h" />
+    <ClInclude Include="Libcef\include\capi\cef_jsdialog_handler_capi.h" />
+    <ClInclude Include="Libcef\include\capi\cef_keyboard_handler_capi.h" />
+    <ClInclude Include="Libcef\include\capi\cef_life_span_handler_capi.h" />
+    <ClInclude Include="Libcef\include\capi\cef_load_handler_capi.h" />
+    <ClInclude Include="Libcef\include\capi\cef_menu_model_capi.h" />
+    <ClInclude Include="Libcef\include\capi\cef_navigation_entry_capi.h" />
+    <ClInclude Include="Libcef\include\capi\cef_origin_whitelist_capi.h" />
+    <ClInclude Include="Libcef\include\capi\cef_parser_capi.h" />
+    <ClInclude Include="Libcef\include\capi\cef_path_util_capi.h" />
+    <ClInclude Include="Libcef\include\capi\cef_print_handler_capi.h" />
+    <ClInclude Include="Libcef\include\capi\cef_print_settings_capi.h" />
+    <ClInclude Include="Libcef\include\capi\cef_process_message_capi.h" />
+    <ClInclude Include="Libcef\include\capi\cef_process_util_capi.h" />
+    <ClInclude Include="Libcef\include\capi\cef_render_handler_capi.h" />
+    <ClInclude Include="Libcef\include\capi\cef_render_process_handler_capi.h" />
+    <ClInclude Include="Libcef\include\capi\cef_request_capi.h" />
+    <ClInclude Include="Libcef\include\capi\cef_request_context_capi.h" />
+    <ClInclude Include="Libcef\include\capi\cef_request_context_handler_capi.h" />
+    <ClInclude Include="Libcef\include\capi\cef_request_handler_capi.h" />
+    <ClInclude Include="Libcef\include\capi\cef_resource_bundle_capi.h" />
+    <ClInclude Include="Libcef\include\capi\cef_resource_bundle_handler_capi.h" />
+    <ClInclude Include="Libcef\include\capi\cef_resource_handler_capi.h" />
+    <ClInclude Include="Libcef\include\capi\cef_response_capi.h" />
+    <ClInclude Include="Libcef\include\capi\cef_response_filter_capi.h" />
+    <ClInclude Include="Libcef\include\capi\cef_scheme_capi.h" />
+    <ClInclude Include="Libcef\include\capi\cef_ssl_info_capi.h" />
+    <ClInclude Include="Libcef\include\capi\cef_stream_capi.h" />
+    <ClInclude Include="Libcef\include\capi\cef_string_visitor_capi.h" />
+    <ClInclude Include="Libcef\include\capi\cef_task_capi.h" />
+    <ClInclude Include="Libcef\include\capi\cef_trace_capi.h" />
+    <ClInclude Include="Libcef\include\capi\cef_urlrequest_capi.h" />
+    <ClInclude Include="Libcef\include\capi\cef_v8_capi.h" />
+    <ClInclude Include="Libcef\include\capi\cef_values_capi.h" />
+    <ClInclude Include="Libcef\include\capi\cef_web_plugin_capi.h" />
+    <ClInclude Include="Libcef\include\capi\cef_xml_reader_capi.h" />
+    <ClInclude Include="Libcef\include\capi\cef_zip_reader_capi.h" />
+    <ClInclude Include="Libcef\include\cef_app.h" />
+    <ClInclude Include="Libcef\include\cef_auth_callback.h" />
+    <ClInclude Include="Libcef\include\cef_base.h" />
+    <ClInclude Include="Libcef\include\cef_browser.h" />
+    <ClInclude Include="Libcef\include\cef_browser_process_handler.h" />
+    <ClInclude Include="Libcef\include\cef_callback.h" />
+    <ClInclude Include="Libcef\include\cef_client.h" />
+    <ClInclude Include="Libcef\include\cef_command_line.h" />
+    <ClInclude Include="Libcef\include\cef_context_menu_handler.h" />
+    <ClInclude Include="Libcef\include\cef_cookie.h" />
+    <ClInclude Include="Libcef\include\cef_dialog_handler.h" />
+    <ClInclude Include="Libcef\include\cef_display_handler.h" />
+    <ClInclude Include="Libcef\include\cef_dom.h" />
+    <ClInclude Include="Libcef\include\cef_download_handler.h" />
+    <ClInclude Include="Libcef\include\cef_download_item.h" />
+    <ClInclude Include="Libcef\include\cef_drag_data.h" />
+    <ClInclude Include="Libcef\include\cef_drag_handler.h" />
+    <ClInclude Include="Libcef\include\cef_find_handler.h" />
+    <ClInclude Include="Libcef\include\cef_focus_handler.h" />
+    <ClInclude Include="Libcef\include\cef_frame.h" />
+    <ClInclude Include="Libcef\include\cef_geolocation.h" />
+    <ClInclude Include="Libcef\include\cef_geolocation_handler.h" />
+    <ClInclude Include="Libcef\include\cef_jsdialog_handler.h" />
+    <ClInclude Include="Libcef\include\cef_keyboard_handler.h" />
+    <ClInclude Include="Libcef\include\cef_life_span_handler.h" />
+    <ClInclude Include="Libcef\include\cef_load_handler.h" />
+    <ClInclude Include="Libcef\include\cef_menu_model.h" />
+    <ClInclude Include="Libcef\include\cef_navigation_entry.h" />
+    <ClInclude Include="Libcef\include\cef_origin_whitelist.h" />
+    <ClInclude Include="Libcef\include\cef_pack_resources.h" />
+    <ClInclude Include="Libcef\include\cef_pack_strings.h" />
+    <ClInclude Include="Libcef\include\cef_parser.h" />
+    <ClInclude Include="Libcef\include\cef_path_util.h" />
+    <ClInclude Include="Libcef\include\cef_print_handler.h" />
+    <ClInclude Include="Libcef\include\cef_print_settings.h" />
+    <ClInclude Include="Libcef\include\cef_process_message.h" />
+    <ClInclude Include="Libcef\include\cef_process_util.h" />
+    <ClInclude Include="Libcef\include\cef_render_handler.h" />
+    <ClInclude Include="Libcef\include\cef_render_process_handler.h" />
+    <ClInclude Include="Libcef\include\cef_request.h" />
+    <ClInclude Include="Libcef\include\cef_request_context.h" />
+    <ClInclude Include="Libcef\include\cef_request_context_handler.h" />
+    <ClInclude Include="Libcef\include\cef_request_handler.h" />
+    <ClInclude Include="Libcef\include\cef_resource_bundle.h" />
+    <ClInclude Include="Libcef\include\cef_resource_bundle_handler.h" />
+    <ClInclude Include="Libcef\include\cef_resource_handler.h" />
+    <ClInclude Include="Libcef\include\cef_response.h" />
+    <ClInclude Include="Libcef\include\cef_response_filter.h" />
+    <ClInclude Include="Libcef\include\cef_runnable.h" />
+    <ClInclude Include="Libcef\include\cef_sandbox_win.h" />
+    <ClInclude Include="Libcef\include\cef_scheme.h" />
+    <ClInclude Include="Libcef\include\cef_ssl_info.h" />
+    <ClInclude Include="Libcef\include\cef_stream.h" />
+    <ClInclude Include="Libcef\include\cef_string_visitor.h" />
+    <ClInclude Include="Libcef\include\cef_task.h" />
+    <ClInclude Include="Libcef\include\cef_trace.h" />
+    <ClInclude Include="Libcef\include\cef_urlrequest.h" />
+    <ClInclude Include="Libcef\include\cef_v8.h" />
+    <ClInclude Include="Libcef\include\cef_values.h" />
+    <ClInclude Include="Libcef\include\cef_version.h" />
+    <ClInclude Include="Libcef\include\cef_web_plugin.h" />
+    <ClInclude Include="Libcef\include\cef_xml_reader.h" />
+    <ClInclude Include="Libcef\include\cef_zip_reader.h" />
+    <ClInclude Include="Libcef\include\internal\cef_export.h" />
+    <ClInclude Include="Libcef\include\internal\cef_logging_internal.h" />
+    <ClInclude Include="Libcef\include\internal\cef_ptr.h" />
+    <ClInclude Include="Libcef\include\internal\cef_string.h" />
+    <ClInclude Include="Libcef\include\internal\cef_string_list.h" />
+    <ClInclude Include="Libcef\include\internal\cef_string_map.h" />
+    <ClInclude Include="Libcef\include\internal\cef_string_multimap.h" />
+    <ClInclude Include="Libcef\include\internal\cef_string_types.h" />
+    <ClInclude Include="Libcef\include\internal\cef_string_wrappers.h" />
+    <ClInclude Include="Libcef\include\internal\cef_thread_internal.h" />
+    <ClInclude Include="Libcef\include\internal\cef_time.h" />
+    <ClInclude Include="Libcef\include\internal\cef_trace_event_internal.h" />
+    <ClInclude Include="Libcef\include\internal\cef_types.h" />
+    <ClInclude Include="Libcef\include\internal\cef_types_win.h" />
+    <ClInclude Include="Libcef\include\internal\cef_types_wrappers.h" />
+    <ClInclude Include="Libcef\include\internal\cef_win.h" />
+    <ClInclude Include="Libcef\include\wrapper\cef_byte_read_handler.h" />
+    <ClInclude Include="Libcef\include\wrapper\cef_closure_task.h" />
+    <ClInclude Include="Libcef\include\wrapper\cef_helpers.h" />
+    <ClInclude Include="Libcef\include\wrapper\cef_message_router.h" />
+    <ClInclude Include="Libcef\include\wrapper\cef_resource_manager.h" />
+    <ClInclude Include="Libcef\include\wrapper\cef_stream_resource_handler.h" />
+    <ClInclude Include="Libcef\include\wrapper\cef_xml_object.h" />
+    <ClInclude Include="Libcef\include\wrapper\cef_zip_archive.h" />
+    <ClInclude Include="Libcef\JsBind\JsBind.h" />
+    <ClInclude Include="Libcef\UICefWebkit.h" />
+    <ClInclude Include="Libcef\Win32Wnd.h" />
     <ClInclude Include="MsgDefine.h" />
     <ClInclude Include="resource.h" />
-    <ClInclude Include="resource1.h" />
-    <ClInclude Include="SkinWnd\SkinManager.h" />
-    <ClInclude Include="SkinWnd\SkinWnd.h" />
-    <ClInclude Include="SkinWnd\UIColorSkin.h" />
     <ClInclude Include="stdafx.h" />
-    <ClInclude Include="cef\UICefWebkit.h" />
-    <ClInclude Include="cef\include\cef_app.h" />
-    <ClInclude Include="cef\include\cef_auth_callback.h" />
-    <ClInclude Include="cef\include\cef_base.h" />
-    <ClInclude Include="cef\include\cef_browser.h" />
-    <ClInclude Include="cef\include\cef_browser_process_handler.h" />
-    <ClInclude Include="cef\include\cef_callback.h" />
-    <ClInclude Include="cef\include\cef_client.h" />
-    <ClInclude Include="cef\include\cef_command_line.h" />
-    <ClInclude Include="cef\include\cef_context_menu_handler.h" />
-    <ClInclude Include="cef\include\cef_cookie.h" />
-    <ClInclude Include="cef\include\cef_dialog_handler.h" />
-    <ClInclude Include="cef\include\cef_display_handler.h" />
-    <ClInclude Include="cef\include\cef_dom.h" />
-    <ClInclude Include="cef\include\cef_download_handler.h" />
-    <ClInclude Include="cef\include\cef_download_item.h" />
-    <ClInclude Include="cef\include\cef_drag_data.h" />
-    <ClInclude Include="cef\include\cef_drag_handler.h" />
-    <ClInclude Include="cef\include\cef_focus_handler.h" />
-    <ClInclude Include="cef\include\cef_frame.h" />
-    <ClInclude Include="cef\include\cef_geolocation.h" />
-    <ClInclude Include="cef\include\cef_geolocation_handler.h" />
-    <ClInclude Include="cef\include\cef_jsdialog_handler.h" />
-    <ClInclude Include="cef\include\cef_keyboard_handler.h" />
-    <ClInclude Include="cef\include\cef_life_span_handler.h" />
-    <ClInclude Include="cef\include\cef_load_handler.h" />
-    <ClInclude Include="cef\include\cef_menu_model.h" />
-    <ClInclude Include="cef\include\cef_origin_whitelist.h" />
-    <ClInclude Include="cef\include\cef_pack_resources.h" />
-    <ClInclude Include="cef\include\cef_pack_strings.h" />
-    <ClInclude Include="cef\include\cef_path_util.h" />
-    <ClInclude Include="cef\include\cef_process_message.h" />
-    <ClInclude Include="cef\include\cef_process_util.h" />
-    <ClInclude Include="cef\include\cef_render_handler.h" />
-    <ClInclude Include="cef\include\cef_render_process_handler.h" />
-    <ClInclude Include="cef\include\cef_request.h" />
-    <ClInclude Include="cef\include\cef_request_context.h" />
-    <ClInclude Include="cef\include\cef_request_context_handler.h" />
-    <ClInclude Include="cef\include\cef_request_handler.h" />
-    <ClInclude Include="cef\include\cef_resource_bundle_handler.h" />
-    <ClInclude Include="cef\include\cef_resource_handler.h" />
-    <ClInclude Include="cef\include\cef_response.h" />
-    <ClInclude Include="cef\include\cef_runnable.h" />
-    <ClInclude Include="cef\include\cef_scheme.h" />
-    <ClInclude Include="cef\include\cef_stream.h" />
-    <ClInclude Include="cef\include\cef_string_visitor.h" />
-    <ClInclude Include="cef\include\cef_task.h" />
-    <ClInclude Include="cef\include\cef_trace.h" />
-    <ClInclude Include="cef\include\cef_trace_event.h" />
-    <ClInclude Include="cef\include\cef_url.h" />
-    <ClInclude Include="cef\include\cef_urlrequest.h" />
-    <ClInclude Include="cef\include\cef_v8.h" />
-    <ClInclude Include="cef\include\cef_values.h" />
-    <ClInclude Include="cef\include\cef_version.h" />
-    <ClInclude Include="cef\include\cef_web_plugin.h" />
-    <ClInclude Include="cef\include\cef_xml_reader.h" />
-    <ClInclude Include="cef\include\cef_zip_reader.h" />
-    <ClInclude Include="TabBar\UITabBar.h" />
-    <ClInclude Include="TabBar\UITabItem.h" />
     <ClInclude Include="ThirdPart\Common\Common.h" />
+    <ClInclude Include="ThirdPart\MiscUI\WaterEffect.h" />
+    <ClInclude Include="UI\Menu\MyMenuUI.h" />
+    <ClInclude Include="UI\Page\ChromePage.h" />
+    <ClInclude Include="UI\SkinMgr\SkinManager.h" />
+    <ClInclude Include="UI\SkinMgr\SkinWnd.h" />
+    <ClInclude Include="UI\SkinMgr\UIColorSkin.h" />
+    <ClInclude Include="UI\TabBar\UITabBar.h" />
+    <ClInclude Include="UI\TabBar\UITabItem.h" />
+    <ClInclude Include="UI\Wnd\AboutWnd.h" />
+    <ClInclude Include="UI\Wnd\EditMenuWnd.h" />
+    <ClInclude Include="UI\Wnd\MainWnd.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Res\web.ico" />

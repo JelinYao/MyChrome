@@ -1,5 +1,6 @@
 # MyChrome
 使用libCef+Duilib开发属于自己的浏览器，支持多标签、多进程、视频播放、开发者模式、保存网页为PDF文件等功能。
+libcef官方下载地址：https://bitbucket.org/chromiumembedded/cef/downloads/
 
 
 # 编译：  

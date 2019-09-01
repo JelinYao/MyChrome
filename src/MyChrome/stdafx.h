@@ -24,13 +24,12 @@ using std::string;
 // #ifndef UILIB_API
 // #define UILIB_API
 // #endif
-#include "../../DuiLib/UIlib.h"
+#include "../DuiLib/UIlib.h"
 using namespace DuiLib;
 #include "UICefWebkit.h"
-#include "Tabbar/UITabBar.h"
-#include "Config/Config.h"
+#include "UI/Tabbar/UITabBar.h"
 #include "ThirdPart/Common/Common.h"
-#include "SkinWnd/SkinManager.h"
+#include "UI/SkinMgr/SkinManager.h"
 #include "MsgDefine.h"
 #include "CGlobalMgr.h"
 
@@ -47,7 +46,6 @@ extern CSkinManager	g_skinManager;
 #define SOFT_NAME			L"¼«ËÙä¯ÀÀÆ÷"
 #define SOFT_VERSION		L"1.3"
 #define SOFT_WEBSITE		L"https://github.com/JelinYao"
-#define HOMEPAGE_URL		L"https://github.com/JelinYao"
 
 
 extern wstring	g_strExePath;
