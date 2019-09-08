@@ -1,9 +1,6 @@
 #pragma once
-#include "CefBase/util.h"
-#include "CefBase/CefHandler.h"
-#include "CefBase/CefAppEx.h"
-#include "CefBase/CEfV8Handler.h"
-#include "CefBase/Delegate.h"
+#include "CefBase/client_handler.h"
+#include "CefBase/delegate.h"
 
 class CCefWebkitUI;
 //网页加载状态的回调
@@ -43,7 +40,7 @@ public:
 	void	ExecuteJavascript(const wstring& strCode);
 	CefRefPtr<CefBrowser>	GetBrowser();
 	CefRefPtr<CefFrame>		GetMainFrame();
-	CCefHandler* GetCefHandle()														{ return m_cefHandles.get(); }
+	client::ClientHandler* GetCefHandle()											{ return m_cefHandles.get(); }
 	bool	CanGoBack()																{ return (m_pWebBrowser.get())?m_pWebBrowser->CanGoBack():false; }
 	void	SetTitle(LPCTSTR lpTitle)												{ m_strTitle = lpTitle; }
 	const wstring&	GetTitle()const													{ return m_strTitle; }
@@ -58,6 +55,8 @@ public:
 protected:
 
 	virtual void OnBrowserCreated(CefRefPtr<CefBrowser> browser);
+	virtual void OnBrowserClosing(CefRefPtr<CefBrowser> browser);
+	virtual void OnBrowserClosed(CefRefPtr<CefBrowser> browser);
 	virtual void OnSetAddress(const std::wstring& url);
 	virtual void OnSetTitle(const std::wstring& title);
 	virtual void OnSetFullscreen(bool fullscreen);
@@ -70,6 +69,7 @@ protected:
 	virtual void OnStatusMessage(const std::wstring& msg);
 	virtual bool OnBeforeBrowse(CefRefPtr<CefBrowser> browser, const std::wstring& url);
 	virtual bool OnShowDevTools(CefRefPtr<CefBrowser> browser, CefWindowInfo& wndInfo, CefRefPtr<CefClient>& client, CefBrowserSettings& setting);
+	virtual void OnAutoResize(const CefSize& new_size);
 
 private:
 	wstring	m_strHomePage;
@@ -77,5 +77,5 @@ private:
 	void*	m_lpCallbackData;
 	CCefWebCallback	*m_pCallback;
 	CefRefPtr<CefBrowser>	m_pWebBrowser;
-	CefRefPtr<CCefHandler>	m_cefHandles;
+	CefRefPtr<client::ClientHandler>	m_cefHandles;
 };

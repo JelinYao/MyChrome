@@ -43,7 +43,7 @@ LRESULT CALLBACK CWin32Wnd::WindowProc(HWND hWnd, UINT message, WPARAM wParam, L
 /////////////////////////////////////////////////
 CWin32Wnd::CWin32Wnd( const wstring& strHomePage/*=L""*/ )
 : m_hWnd(NULL)
-, m_cefHandles(new CCefHandler(this, ""))
+, m_cefHandles(new client::ClientHandler(this, false, ""))
 {
 
 }
@@ -218,5 +218,5 @@ bool CWin32Wnd::CreateBrowserWnd(CefRefPtr<CefClient>& client, CefWindowInfo& wi
 	windowInfo.SetAsChild(m_hWnd, rect);
 	client = m_cefHandles;
 	//return CefBrowserHost::CreateBrowser(windowInfo, m_cefHandles, url, settings, NULL);
-	return NULL != CefBrowserHost::CreateBrowserSync(windowInfo, m_cefHandles, url, settings, NULL);
+	return NULL != CefBrowserHost::CreateBrowserSync(windowInfo, m_cefHandles, url, settings, NULL, NULL);
 }

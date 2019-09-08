@@ -46,9 +46,6 @@
     <Filter Include="Libcef\include">
       <UniqueIdentifier>{1ebb2219-2ef7-4095-b2fc-2a2855207531}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Libcef\JsBind">
-      <UniqueIdentifier>{927d8209-0af2-4083-917c-00e885ffdd6c}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Libcef\include\base">
       <UniqueIdentifier>{04d9fecd-e21b-4fd6-bb8f-d666b7fd6fce}</UniqueIdentifier>
     </Filter>
@@ -66,6 +63,15 @@
     </Filter>
     <Filter Include="UI\Menu">
       <UniqueIdentifier>{b90f8d12-ee95-49bc-9837-010589e2290f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Libcef\CefBase\browser">
+      <UniqueIdentifier>{d95f972c-f8fd-407c-8981-d99aabf4f8b5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Libcef\CefBase\common">
+      <UniqueIdentifier>{6dc8922d-1aed-4abb-9d13-ee5abaa6bbc5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Libcef\CefBase\renderer">
+      <UniqueIdentifier>{b5b0c03f-3c1c-4117-a173-825f8eb311cf}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -114,48 +120,6 @@
     <ClCompile Include="ThirdPart\MiscUI\WaterEffect.cpp">
       <Filter>ThirdPart\MiscUI</Filter>
     </ClCompile>
-    <ClCompile Include="Libcef\CefBase\CefAppEx.cpp">
-      <Filter>Libcef\CefBase</Filter>
-    </ClCompile>
-    <ClCompile Include="Libcef\CefBase\CefHandler.cpp">
-      <Filter>Libcef\CefBase</Filter>
-    </ClCompile>
-    <ClCompile Include="Libcef\CefBase\CEfV8Handler.cpp">
-      <Filter>Libcef\CefBase</Filter>
-    </ClCompile>
-    <ClCompile Include="Libcef\CefBase\client_app.cpp">
-      <Filter>Libcef\CefBase</Filter>
-    </ClCompile>
-    <ClCompile Include="Libcef\CefBase\client_app_browser.cpp">
-      <Filter>Libcef\CefBase</Filter>
-    </ClCompile>
-    <ClCompile Include="Libcef\CefBase\client_app_other.cpp">
-      <Filter>Libcef\CefBase</Filter>
-    </ClCompile>
-    <ClCompile Include="Libcef\CefBase\client_app_renderer.cpp">
-      <Filter>Libcef\CefBase</Filter>
-    </ClCompile>
-    <ClCompile Include="Libcef\CefBase\client_renderer.cpp">
-      <Filter>Libcef\CefBase</Filter>
-    </ClCompile>
-    <ClCompile Include="Libcef\CefBase\client_switches.cpp">
-      <Filter>Libcef\CefBase</Filter>
-    </ClCompile>
-    <ClCompile Include="Libcef\CefBase\main_message_loop.cc">
-      <Filter>Libcef\CefBase</Filter>
-    </ClCompile>
-    <ClCompile Include="Libcef\CefBase\main_message_loop_multithreaded_win.cc">
-      <Filter>Libcef\CefBase</Filter>
-    </ClCompile>
-    <ClCompile Include="Libcef\CefBase\main_message_loop_std.cc">
-      <Filter>Libcef\CefBase</Filter>
-    </ClCompile>
-    <ClCompile Include="Libcef\CefBase\util_win.cc">
-      <Filter>Libcef\CefBase</Filter>
-    </ClCompile>
-    <ClCompile Include="Libcef\JsBind\JsBind.cpp">
-      <Filter>Libcef\JsBind</Filter>
-    </ClCompile>
     <ClCompile Include="Libcef\UICefWebkit.cpp">
       <Filter>Libcef</Filter>
     </ClCompile>
@@ -164,6 +128,60 @@
     </ClCompile>
     <ClCompile Include="UI\Menu\MyMenuUI.cpp">
       <Filter>UI\Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="Libcef\CefBase\browser\client_app_browser.cc">
+      <Filter>Libcef\CefBase\browser</Filter>
+    </ClCompile>
+    <ClCompile Include="Libcef\CefBase\browser\extension_util.cc">
+      <Filter>Libcef\CefBase\browser</Filter>
+    </ClCompile>
+    <ClCompile Include="Libcef\CefBase\browser\file_util.cc">
+      <Filter>Libcef\CefBase\browser</Filter>
+    </ClCompile>
+    <ClCompile Include="Libcef\CefBase\browser\geometry_util.cc">
+      <Filter>Libcef\CefBase\browser</Filter>
+    </ClCompile>
+    <ClCompile Include="Libcef\CefBase\browser\main_message_loop.cc">
+      <Filter>Libcef\CefBase\browser</Filter>
+    </ClCompile>
+    <ClCompile Include="Libcef\CefBase\browser\main_message_loop_external_pump.cc">
+      <Filter>Libcef\CefBase\browser</Filter>
+    </ClCompile>
+    <ClCompile Include="Libcef\CefBase\browser\main_message_loop_external_pump_win.cc">
+      <Filter>Libcef\CefBase\browser</Filter>
+    </ClCompile>
+    <ClCompile Include="Libcef\CefBase\browser\main_message_loop_std.cc">
+      <Filter>Libcef\CefBase\browser</Filter>
+    </ClCompile>
+    <ClCompile Include="Libcef\CefBase\browser\util_win.cc">
+      <Filter>Libcef\CefBase\browser</Filter>
+    </ClCompile>
+    <ClCompile Include="Libcef\CefBase\common\client_app.cc">
+      <Filter>Libcef\CefBase\common</Filter>
+    </ClCompile>
+    <ClCompile Include="Libcef\CefBase\common\client_app_other.cc">
+      <Filter>Libcef\CefBase\common</Filter>
+    </ClCompile>
+    <ClCompile Include="Libcef\CefBase\common\client_switches.cc">
+      <Filter>Libcef\CefBase\common</Filter>
+    </ClCompile>
+    <ClCompile Include="Libcef\CefBase\renderer\client_app_renderer.cc">
+      <Filter>Libcef\CefBase\renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="Libcef\CefBase\simple_app.cc">
+      <Filter>Libcef\CefBase</Filter>
+    </ClCompile>
+    <ClCompile Include="Libcef\CefBase\simple_handler.cc">
+      <Filter>Libcef\CefBase</Filter>
+    </ClCompile>
+    <ClCompile Include="Libcef\CefBase\simple_handler_win.cc">
+      <Filter>Libcef\CefBase</Filter>
+    </ClCompile>
+    <ClCompile Include="Libcef\CefBase\client_handler.cc">
+      <Filter>Libcef\CefBase</Filter>
+    </ClCompile>
+    <ClCompile Include="Libcef\CefBase\utils.cc">
+      <Filter>Libcef\CefBase</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -211,54 +229,6 @@
     </ClInclude>
     <ClInclude Include="ThirdPart\MiscUI\WaterEffect.h">
       <Filter>ThirdPart\MiscUI</Filter>
-    </ClInclude>
-    <ClInclude Include="Libcef\CefBase\CefAppEx.h">
-      <Filter>Libcef\CefBase</Filter>
-    </ClInclude>
-    <ClInclude Include="Libcef\CefBase\CefHandler.h">
-      <Filter>Libcef\CefBase</Filter>
-    </ClInclude>
-    <ClInclude Include="Libcef\CefBase\CEfV8Handler.h">
-      <Filter>Libcef\CefBase</Filter>
-    </ClInclude>
-    <ClInclude Include="Libcef\CefBase\client_app.h">
-      <Filter>Libcef\CefBase</Filter>
-    </ClInclude>
-    <ClInclude Include="Libcef\CefBase\client_app_browser.h">
-      <Filter>Libcef\CefBase</Filter>
-    </ClInclude>
-    <ClInclude Include="Libcef\CefBase\client_app_other.h">
-      <Filter>Libcef\CefBase</Filter>
-    </ClInclude>
-    <ClInclude Include="Libcef\CefBase\client_app_renderer.h">
-      <Filter>Libcef\CefBase</Filter>
-    </ClInclude>
-    <ClInclude Include="Libcef\CefBase\client_renderer.h">
-      <Filter>Libcef\CefBase</Filter>
-    </ClInclude>
-    <ClInclude Include="Libcef\CefBase\client_switches.h">
-      <Filter>Libcef\CefBase</Filter>
-    </ClInclude>
-    <ClInclude Include="Libcef\CefBase\Delegate.h">
-      <Filter>Libcef\CefBase</Filter>
-    </ClInclude>
-    <ClInclude Include="Libcef\CefBase\main_message_loop.h">
-      <Filter>Libcef\CefBase</Filter>
-    </ClInclude>
-    <ClInclude Include="Libcef\CefBase\main_message_loop_multithreaded_win.h">
-      <Filter>Libcef\CefBase</Filter>
-    </ClInclude>
-    <ClInclude Include="Libcef\CefBase\main_message_loop_std.h">
-      <Filter>Libcef\CefBase</Filter>
-    </ClInclude>
-    <ClInclude Include="Libcef\CefBase\PdfPrintCallbackEx.h">
-      <Filter>Libcef\CefBase</Filter>
-    </ClInclude>
-    <ClInclude Include="Libcef\CefBase\util.h">
-      <Filter>Libcef\CefBase</Filter>
-    </ClInclude>
-    <ClInclude Include="Libcef\CefBase\util_win.h">
-      <Filter>Libcef\CefBase</Filter>
     </ClInclude>
     <ClInclude Include="Libcef\include\cef_app.h">
       <Filter>Libcef\include</Filter>
@@ -791,9 +761,6 @@
     <ClInclude Include="Libcef\include\wrapper\cef_zip_archive.h">
       <Filter>Libcef\include\wrapper</Filter>
     </ClInclude>
-    <ClInclude Include="Libcef\JsBind\JsBind.h">
-      <Filter>Libcef\JsBind</Filter>
-    </ClInclude>
     <ClInclude Include="Libcef\UICefWebkit.h">
       <Filter>Libcef</Filter>
     </ClInclude>
@@ -802,6 +769,63 @@
     </ClInclude>
     <ClInclude Include="UI\Menu\MyMenuUI.h">
       <Filter>UI\Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="Libcef\CefBase\browser\client_app_browser.h">
+      <Filter>Libcef\CefBase\browser</Filter>
+    </ClInclude>
+    <ClInclude Include="Libcef\CefBase\browser\extension_util.h">
+      <Filter>Libcef\CefBase\browser</Filter>
+    </ClInclude>
+    <ClInclude Include="Libcef\CefBase\browser\file_util.h">
+      <Filter>Libcef\CefBase\browser</Filter>
+    </ClInclude>
+    <ClInclude Include="Libcef\CefBase\browser\geometry_util.h">
+      <Filter>Libcef\CefBase\browser</Filter>
+    </ClInclude>
+    <ClInclude Include="Libcef\CefBase\browser\main_message_loop.h">
+      <Filter>Libcef\CefBase\browser</Filter>
+    </ClInclude>
+    <ClInclude Include="Libcef\CefBase\browser\main_message_loop_external_pump.h">
+      <Filter>Libcef\CefBase\browser</Filter>
+    </ClInclude>
+    <ClInclude Include="Libcef\CefBase\browser\main_message_loop_std.h">
+      <Filter>Libcef\CefBase\browser</Filter>
+    </ClInclude>
+    <ClInclude Include="Libcef\CefBase\browser\util_win.h">
+      <Filter>Libcef\CefBase\browser</Filter>
+    </ClInclude>
+    <ClInclude Include="Libcef\CefBase\common\client_app.h">
+      <Filter>Libcef\CefBase\common</Filter>
+    </ClInclude>
+    <ClInclude Include="Libcef\CefBase\common\client_app_other.h">
+      <Filter>Libcef\CefBase\common</Filter>
+    </ClInclude>
+    <ClInclude Include="Libcef\CefBase\common\client_switches.h">
+      <Filter>Libcef\CefBase\common</Filter>
+    </ClInclude>
+    <ClInclude Include="Libcef\CefBase\renderer\client_app_renderer.h">
+      <Filter>Libcef\CefBase\renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Libcef\CefBase\simple_app.h">
+      <Filter>Libcef\CefBase</Filter>
+    </ClInclude>
+    <ClInclude Include="Libcef\CefBase\simple_handler.h">
+      <Filter>Libcef\CefBase</Filter>
+    </ClInclude>
+    <ClInclude Include="Libcef\CefBase\delegate.h">
+      <Filter>Libcef\CefBase</Filter>
+    </ClInclude>
+    <ClInclude Include="Libcef\CefBase\client_handler.h">
+      <Filter>Libcef\CefBase</Filter>
+    </ClInclude>
+    <ClInclude Include="Libcef\CefBase\utils.h">
+      <Filter>Libcef\CefBase</Filter>
+    </ClInclude>
+    <ClInclude Include="Libcef\CefBase\app_render_delegate.h">
+      <Filter>Libcef\CefBase</Filter>
+    </ClInclude>
+    <ClInclude Include="Libcef\CefBase\app_browser_delegate.h">
+      <Filter>Libcef\CefBase</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

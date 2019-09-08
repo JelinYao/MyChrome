@@ -1,25 +1,15 @@
 #pragma once
 #include <stdio.h>
-#include <tchar.h>
+#include <wchar.h>
 #include <Windows.h>
-#include <atlfile.h>
-//#include <atlstr.h>
 #include <string>
 using std::wstring;
 using std::string;
 
 #define _CRT_SECURE_NO_WARNINGS
 
-#	pragma comment(lib, "libcef")
-#if (_MSC_VER == 1600)
-#	pragma comment(lib, "libcef_dll_wrapper100")
-#elif (_MSC_VER == 1500)
-#	pragma comment(lib, "libcef_dll_wrapper90")
-#elif (_MSC_VER == 1800)
-#	pragma comment(lib, "libcef_dll_wrapper120")
-#elif (_MSC_VER == 1916)
-#	pragma comment(lib, "libcef_dll_wrapper150")
-#endif
+#pragma comment(lib, "libcef.lib")
+#pragma comment(lib, "libcef_dll_wrapper.lib")
 
 // #ifndef UILIB_API
 // #define UILIB_API
@@ -33,11 +23,7 @@ using namespace DuiLib;
 #include "MsgDefine.h"
 #include "CGlobalMgr.h"
 
-struct ShareData
-{
-	HWND	hWnd;
-};
-extern CAtlFileMapping<ShareData>	g_bShareInit;
+
 static const wchar_t g_szShareGuid[] = L"{FDEE917E-7284-436e-83CF-823342302E57}";
 extern CSkinManager	g_skinManager;
 

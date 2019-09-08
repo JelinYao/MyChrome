@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "MainWnd.h"
 #include "resource.h"
+#include "include/cef_app.h"
 
 
 CMainWnd::CMainWnd(void)

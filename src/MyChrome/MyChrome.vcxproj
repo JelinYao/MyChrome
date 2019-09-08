@@ -15,19 +15,19 @@
     <RootNamespace>MyChrome</RootNamespace>
     <Keyword>Win32Proj</Keyword>
     <ProjectName>MyChrome</ProjectName>
-    <WindowsTargetPlatformVersion>7.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <CharacterSet>Unicode</CharacterSet>
     <WholeProgramOptimization>true</WholeProgramOptimization>
-    <PlatformToolset>v141_xp</PlatformToolset>
+    <PlatformToolset>v141</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <CharacterSet>Unicode</CharacterSet>
-    <PlatformToolset>v141_xp</PlatformToolset>
+    <PlatformToolset>v141</PlatformToolset>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -55,7 +55,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>./;./Libcef/;../../include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>./;./Libcef/;../../include;%(AdditionalIncludeDirectories);.\Libcef\CefBase</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions);UILIB_EXPORTS_LIB</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -79,7 +79,7 @@
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>./;./Libcef;../../include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>./;./Libcef;../../include;%(AdditionalIncludeDirectories);.\Libcef\CefBase</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>UILIB_EXPORTS_LIB;WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -102,20 +102,24 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Libcef\CefBase\CefAppEx.cpp" />
-    <ClCompile Include="Libcef\CefBase\CefHandler.cpp" />
-    <ClCompile Include="Libcef\CefBase\CEfV8Handler.cpp" />
-    <ClCompile Include="Libcef\CefBase\client_app.cpp" />
-    <ClCompile Include="Libcef\CefBase\client_app_browser.cpp" />
-    <ClCompile Include="Libcef\CefBase\client_app_other.cpp" />
-    <ClCompile Include="Libcef\CefBase\client_app_renderer.cpp" />
-    <ClCompile Include="Libcef\CefBase\client_renderer.cpp" />
-    <ClCompile Include="Libcef\CefBase\client_switches.cpp" />
-    <ClCompile Include="Libcef\CefBase\main_message_loop.cc" />
-    <ClCompile Include="Libcef\CefBase\main_message_loop_multithreaded_win.cc" />
-    <ClCompile Include="Libcef\CefBase\main_message_loop_std.cc" />
-    <ClCompile Include="Libcef\CefBase\util_win.cc" />
-    <ClCompile Include="Libcef\JsBind\JsBind.cpp" />
+    <ClCompile Include="Libcef\CefBase\browser\client_app_browser.cc" />
+    <ClCompile Include="Libcef\CefBase\browser\extension_util.cc" />
+    <ClCompile Include="Libcef\CefBase\browser\file_util.cc" />
+    <ClCompile Include="Libcef\CefBase\browser\geometry_util.cc" />
+    <ClCompile Include="Libcef\CefBase\browser\main_message_loop.cc" />
+    <ClCompile Include="Libcef\CefBase\browser\main_message_loop_external_pump.cc" />
+    <ClCompile Include="Libcef\CefBase\browser\main_message_loop_external_pump_win.cc" />
+    <ClCompile Include="Libcef\CefBase\browser\main_message_loop_std.cc" />
+    <ClCompile Include="Libcef\CefBase\browser\util_win.cc" />
+    <ClCompile Include="Libcef\CefBase\client_handler.cc" />
+    <ClCompile Include="Libcef\CefBase\common\client_app.cc" />
+    <ClCompile Include="Libcef\CefBase\common\client_app_other.cc" />
+    <ClCompile Include="Libcef\CefBase\common\client_switches.cc" />
+    <ClCompile Include="Libcef\CefBase\renderer\client_app_renderer.cc" />
+    <ClCompile Include="Libcef\CefBase\simple_app.cc" />
+    <ClCompile Include="Libcef\CefBase\simple_handler.cc" />
+    <ClCompile Include="Libcef\CefBase\simple_handler_win.cc" />
+    <ClCompile Include="Libcef\CefBase\utils.cc" />
     <ClCompile Include="Libcef\UICefWebkit.cpp" />
     <ClCompile Include="Libcef\Win32Wnd.cpp" />
     <ClCompile Include="Main.cpp" />
@@ -139,22 +143,25 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CGlobalMgr.h" />
-    <ClInclude Include="Libcef\CefBase\CefAppEx.h" />
-    <ClInclude Include="Libcef\CefBase\CefHandler.h" />
-    <ClInclude Include="Libcef\CefBase\CEfV8Handler.h" />
-    <ClInclude Include="Libcef\CefBase\client_app.h" />
-    <ClInclude Include="Libcef\CefBase\client_app_browser.h" />
-    <ClInclude Include="Libcef\CefBase\client_app_other.h" />
-    <ClInclude Include="Libcef\CefBase\client_app_renderer.h" />
-    <ClInclude Include="Libcef\CefBase\client_renderer.h" />
-    <ClInclude Include="Libcef\CefBase\client_switches.h" />
-    <ClInclude Include="Libcef\CefBase\Delegate.h" />
-    <ClInclude Include="Libcef\CefBase\main_message_loop.h" />
-    <ClInclude Include="Libcef\CefBase\main_message_loop_multithreaded_win.h" />
-    <ClInclude Include="Libcef\CefBase\main_message_loop_std.h" />
-    <ClInclude Include="Libcef\CefBase\PdfPrintCallbackEx.h" />
-    <ClInclude Include="Libcef\CefBase\util.h" />
-    <ClInclude Include="Libcef\CefBase\util_win.h" />
+    <ClInclude Include="Libcef\CefBase\app_browser_delegate.h" />
+    <ClInclude Include="Libcef\CefBase\app_render_delegate.h" />
+    <ClInclude Include="Libcef\CefBase\browser\client_app_browser.h" />
+    <ClInclude Include="Libcef\CefBase\browser\extension_util.h" />
+    <ClInclude Include="Libcef\CefBase\browser\file_util.h" />
+    <ClInclude Include="Libcef\CefBase\browser\geometry_util.h" />
+    <ClInclude Include="Libcef\CefBase\browser\main_message_loop.h" />
+    <ClInclude Include="Libcef\CefBase\browser\main_message_loop_external_pump.h" />
+    <ClInclude Include="Libcef\CefBase\browser\main_message_loop_std.h" />
+    <ClInclude Include="Libcef\CefBase\browser\util_win.h" />
+    <ClInclude Include="Libcef\CefBase\client_handler.h" />
+    <ClInclude Include="Libcef\CefBase\common\client_app.h" />
+    <ClInclude Include="Libcef\CefBase\common\client_app_other.h" />
+    <ClInclude Include="Libcef\CefBase\common\client_switches.h" />
+    <ClInclude Include="Libcef\CefBase\delegate.h" />
+    <ClInclude Include="Libcef\CefBase\renderer\client_app_renderer.h" />
+    <ClInclude Include="Libcef\CefBase\simple_app.h" />
+    <ClInclude Include="Libcef\CefBase\simple_handler.h" />
+    <ClInclude Include="Libcef\CefBase\utils.h" />
     <ClInclude Include="Libcef\include\base\cef_atomicops.h" />
     <ClInclude Include="Libcef\include\base\cef_atomic_ref_count.h" />
     <ClInclude Include="Libcef\include\base\cef_basictypes.h" />
@@ -332,7 +339,6 @@
     <ClInclude Include="Libcef\include\wrapper\cef_stream_resource_handler.h" />
     <ClInclude Include="Libcef\include\wrapper\cef_xml_object.h" />
     <ClInclude Include="Libcef\include\wrapper\cef_zip_archive.h" />
-    <ClInclude Include="Libcef\JsBind\JsBind.h" />
     <ClInclude Include="Libcef\UICefWebkit.h" />
     <ClInclude Include="Libcef\Win32Wnd.h" />
     <ClInclude Include="MsgDefine.h" />

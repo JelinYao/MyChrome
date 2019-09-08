@@ -6,7 +6,7 @@
 
 CCefWebkitUI::CCefWebkitUI(LPCTSTR lpUrl /*= L""*/)
 : m_strHomePage(lpUrl)
-, m_cefHandles(new CCefHandler(this, ""))
+, m_cefHandles(new client::ClientHandler(this, false, ""))
 , m_lpCallbackData(NULL)
 , m_pCallback(NULL)
 {
@@ -188,6 +188,16 @@ void CCefWebkitUI::OnBrowserCreated(CefRefPtr<CefBrowser> browser)
 	m_pWebBrowser = browser;
 }
 
+void CCefWebkitUI::OnBrowserClosing(CefRefPtr<CefBrowser> browser)
+{
+
+}
+
+void CCefWebkitUI::OnBrowserClosed(CefRefPtr<CefBrowser> browser)
+{
+
+}
+
 void CCefWebkitUI::OnSetAddress(const std::wstring& url)
 {
 	if (m_pCallback)
@@ -262,6 +272,11 @@ bool CCefWebkitUI::OnShowDevTools(CefRefPtr<CefBrowser> browser, CefWindowInfo& 
 	pWnd->Show();
 	//return pWnd->CreateBrowserWnd(client, wndInfo, setting, L"");
 	return pWnd->ShowBrowserHostWnd(browser, wndInfo, client, setting);
+}
+
+void CCefWebkitUI::OnAutoResize(const CefSize& new_size)
+{
+
 }
 
 //CefRefPtr<CCefHandler> CCefWebkitUI::m_cefHandles;
