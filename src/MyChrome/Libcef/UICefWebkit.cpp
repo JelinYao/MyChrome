@@ -232,7 +232,7 @@ bool CCefWebkitUI::OnOpenNewUrl(const std::wstring& url)
 	return false;
 }
 
-void CCefWebkitUI::OnLoadStart(CefRefPtr<CefBrowser> browser, CefRefPtr<CefFrame> frame)
+void CCefWebkitUI::OnLoadStart(CefRefPtr<CefBrowser> browser, CefRefPtr<CefFrame> frame, CefLoadHandler::TransitionType transition_type)
 {
 	if (m_pCallback)
 		m_pCallback->OnLoadStart(this, m_lpCallbackData);
@@ -256,7 +256,7 @@ void CCefWebkitUI::OnStatusMessage(const std::wstring& msg)
 		m_pCallback->OnStatusMessage(this, m_lpCallbackData, msg);
 }
 
-bool CCefWebkitUI::OnBeforeBrowse(CefRefPtr<CefBrowser> browser, const std::wstring& url)
+bool CCefWebkitUI::OnBeforeBrowse(CefRefPtr<CefBrowser> browser, const CefString& url)
 {
 	if (m_pCallback)
 		return m_pCallback->OnBeforeBrowse(this, m_lpCallbackData, browser, url);
@@ -269,9 +269,19 @@ bool CCefWebkitUI::OnShowDevTools(CefRefPtr<CefBrowser> browser, CefWindowInfo& 
 	if (!pWnd->Create(CPaintManagerUI::GetInstance(), m_pManager->GetPaintWindow()))
 		return false;
 	pWnd->CenterWindow();
+	m_hWndDev = pWnd->GetWnd();
 	pWnd->Show();
 	//return pWnd->CreateBrowserWnd(client, wndInfo, setting, L"");
 	return pWnd->ShowBrowserHostWnd(browser, wndInfo, client, setting);
+}
+
+void CCefWebkitUI::OnCloseDevTools()
+{
+	if (IsWindow(m_hWndDev))
+	{
+		::PostMessage(m_hWndDev, WM_CLOSE, 0, 0);
+		m_hWndDev = NULL;
+	}
 }
 
 void CCefWebkitUI::OnAutoResize(const CefSize& new_size)

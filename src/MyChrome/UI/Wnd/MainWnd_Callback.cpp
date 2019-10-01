@@ -94,8 +94,9 @@ void CMainWnd::OnSetTitle(CCefWebkitUI* pWeb, void* lpParam, const std::wstring&
 
 bool CMainWnd::OnOpenNewUrl(CCefWebkitUI* pWeb, void* lpParam, const std::wstring& url)
 {
-	wchar_t* pUrl = (wchar_t*)malloc(sizeof(wchar_t)*(url.size() + 1));
-	wcscpy(pUrl, url.c_str());
+	int size = sizeof(wchar_t)*(url.size() + 1);
+	wchar_t* pUrl = (wchar_t*)malloc(size);
+	wcscpy_s(pUrl, size, url.c_str());
 	pUrl[url.size()] = '\0';
 	::PostMessage(m_hWnd, WM_OPENURL_MSG, 0, (LPARAM)pUrl);
 	return true;

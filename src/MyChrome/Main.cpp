@@ -38,9 +38,9 @@ INT WINAPI wWinMain( __in HINSTANCE hInstance, __in_opt HINSTANCE hPrevInstance,
 	settings.log_severity = LOGSEVERITY_DISABLE;
 #endif
 	std::string locale("zh-CN");
-	cef_string_utf8_to_utf16(locale.c_str(), locale.size(), &settings.locale);
+	//cef_string_utf8_to_utf16(locale.c_str(), locale.size(), &settings.locale);
 	std::string language("zh-CN,zh");//zh-CN,zh;q=0.8
-	cef_string_utf8_to_utf16(language.c_str(), language.size(), &settings.accept_language_list);
+	//cef_string_utf8_to_utf16(language.c_str(), language.size(), &settings.accept_language_list);
 	settings.no_sandbox = 1;
 	settings.background_color = 0xffffffff;
 	CefString(&settings.application_client_id_for_file_scanning)

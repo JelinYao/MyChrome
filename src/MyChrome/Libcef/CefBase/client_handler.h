@@ -161,6 +161,10 @@ class ClientHandler : public CefClient,
                             bool isLoading,
                             bool canGoBack,
                             bool canGoForward) OVERRIDE;
+  void OnLoadStart(CefRefPtr<CefBrowser> browser, CefRefPtr<CefFrame> frame, TransitionType transition_type);
+
+  void OnLoadEnd(CefRefPtr<CefBrowser> browser, CefRefPtr<CefFrame> frame, int httpStatusCode);
+
   void OnLoadError(CefRefPtr<CefBrowser> browser,
                    CefRefPtr<CefFrame> frame,
                    ErrorCode errorCode,
@@ -294,9 +298,6 @@ class ClientHandler : public CefClient,
   void NotifyDraggableRegions(const std::vector<CefDraggableRegion>& regions);
   void NotifyTakeFocus(bool next);
 
-  // Test context menu creation.
-  void BuildTestMenu(CefRefPtr<CefMenuModel> model);
-  bool ExecuteTestMenu(int command_id);
 
   // THREAD SAFE MEMBERS
   // The following members may be accessed from any thread.
@@ -317,10 +318,6 @@ class ClientHandler : public CefClient,
   // Custom dialog handler for GTK.
   CefRefPtr<ClientDialogHandlerGtk> dialog_handler_;
 #endif
-
-  // Handles the browser side of query routing. The renderer side is handled
-  // in client_renderer.cc.
-  CefRefPtr<CefMessageRouterBrowserSide> message_router_;
 
   // Manages the registration and delivery of resources.
   CefRefPtr<CefResourceManager> resource_manager_;
@@ -343,20 +340,16 @@ class ClientHandler : public CefClient,
   } test_menu_state_;
 
   // The current number of browsers using this handler.
-  int browser_count_;
+  static int browser_count_;
 
   // Console logging state.
   const std::string console_log_file_;
-  bool first_console_message_;
 
   // True if an editable field currently has focus.
   bool focus_on_editable_field_;
 
   // True for the initial navigation after browser creation.
   bool initial_navigation_;
-
-  // Set of Handlers registered with the message router.
-  MessageHandlerSet message_handler_set_;
 
   IMPLEMENT_REFCOUNTING(ClientHandler);
   DISALLOW_COPY_AND_ASSIGN(ClientHandler);

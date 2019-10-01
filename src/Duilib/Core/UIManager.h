@@ -14,7 +14,7 @@ class CControlUI;
 /////////////////////////////////////////////////////////////////////////////////////
 //
 
-typedef enum EVENTTYPE_UI
+enum EVENTTYPE_UI
 {
 	UIEVENT__ALL = 0,
     UIEVENT__FIRST,

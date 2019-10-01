@@ -240,6 +240,7 @@ class ClientDownloadImageCallback : public CefDownloadImageCallback {
   DISALLOW_COPY_AND_ASSIGN(ClientDownloadImageCallback);
 };
 
+int ClientHandler::browser_count_ = 0;
 ClientHandler::ClientHandler(Delegate* delegate,
                              bool is_osr,
                              const std::string& startup_url)
@@ -247,9 +248,7 @@ ClientHandler::ClientHandler(Delegate* delegate,
       startup_url_(startup_url),
       download_favicon_images_(false),
       delegate_(delegate),
-      browser_count_(0),
       console_log_file_("console.log"),
-      first_console_message_(true),
       focus_on_editable_field_(false),
       initial_navigation_(true) {
   DCHECK(!console_log_file_.empty());
@@ -301,10 +300,10 @@ bool ClientHandler::OnProcessMessageReceived(
     CefRefPtr<CefProcessMessage> message) {
   CEF_REQUIRE_UI_THREAD();
 
-  if (message_router_->OnProcessMessageReceived(browser, frame, source_process,
-                                                message)) {
-    return true;
-  }
+//   if (message_router_->OnProcessMessageReceived(browser, frame, source_process,
+//                                                 message)) {
+//     return true;
+//   }
 
   // Check for messages from the client renderer.
   std::string message_name = message->GetName();
@@ -342,8 +341,6 @@ void ClientHandler::OnBeforeContextMenu(CefRefPtr<CefBrowser> browser,
       model->AddItem(CLIENT_ID_SHOW_SSL_INFO, "Show SSL information");
     }
 
-    // Test context menu features.
-    BuildTestMenu(model);
   }
 
   if (delegate_)
@@ -371,7 +368,7 @@ bool ClientHandler::OnContextMenuCommand(CefRefPtr<CefBrowser> browser,
       ShowSSLInformation(browser);
       return true;
     default:  // Allow default handling, if any.
-      return ExecuteTestMenu(command_id);
+		return false;
   }
 }
 
@@ -417,7 +414,8 @@ bool ClientHandler::OnConsoleMessage(CefRefPtr<CefBrowser> browser,
                                      int line) {
   CEF_REQUIRE_UI_THREAD();
 
-  FILE* file = fopen(console_log_file_.c_str(), "a");
+  FILE* file = NULL;
+  fopen_s(&file, console_log_file_.c_str(), "a");
   if (file) {
     std::stringstream ss;
     ss << "Level: ";
@@ -443,12 +441,6 @@ bool ClientHandler::OnConsoleMessage(CefRefPtr<CefBrowser> browser,
        << NEWLINE << "-----------------------" << NEWLINE;
     fputs(ss.str().c_str(), file);
     fclose(file);
-
-    if (first_console_message_) {
-      Alert(
-          browser, "Console messages written to \"" + console_log_file_ + "\"");
-      first_console_message_ = false;
-    }
   }
 
   return false;
@@ -561,12 +553,13 @@ bool ClientHandler::OnBeforePopup(
     CefRefPtr<CefClient>& client,
     CefBrowserSettings& settings,
     CefRefPtr<CefDictionaryValue>& extra_info,
-    bool* no_javascript_access) {
-  CEF_REQUIRE_UI_THREAD();
-
-  // Return true to cancel the popup window.
-  return !CreatePopupWindow(browser, false, popupFeatures, windowInfo, client,
-                            settings);
+    bool* no_javascript_access) 
+{
+	CEF_REQUIRE_UI_THREAD();
+ 	if (delegate_)
+ 		return delegate_->OnOpenNewUrl(target_url);
+	// Return true to cancel the popup window.
+	return false;
 }
 
 void ClientHandler::OnAfterCreated(CefRefPtr<CefBrowser> browser) {
@@ -574,17 +567,11 @@ void ClientHandler::OnAfterCreated(CefRefPtr<CefBrowser> browser) {
 
   browser_count_++;
 
-  if (!message_router_) {
-    // Create the browser-side router for query handling.
-    CefMessageRouterConfig config;
-    message_router_ = CefMessageRouterBrowserSide::Create(config);
-
-    // Register handlers with the router.
-    //test_runner::CreateMessageHandlers(message_handler_set_);
-    MessageHandlerSet::const_iterator it = message_handler_set_.begin();
-    for (; it != message_handler_set_.end(); ++it)
-      message_router_->AddHandler(*(it), false);
-  }
+//   if (!message_router_) {
+// 	  // Create the browser-side router for query handling.
+// 	  CefMessageRouterConfig config;
+// 	  message_router_ = CefMessageRouterBrowserSide::Create(config);
+//   }
 
   // Disable mouse cursor change if requested via the command-line flag.
   if (mouse_cursor_change_disabled_)
@@ -607,28 +594,22 @@ void ClientHandler::OnAfterCreated(CefRefPtr<CefBrowser> browser) {
 }
 
 bool ClientHandler::DoClose(CefRefPtr<CefBrowser> browser) {
-  CEF_REQUIRE_UI_THREAD();
+	CEF_REQUIRE_UI_THREAD();
+	NotifyBrowserClosing(browser);
 
-  NotifyBrowserClosing(browser);
-
-  // Allow the close. For windowed browsers this will result in the OS close
-  // event being sent.
-  return false;
+	// Allow the close. For windowed browsers this will result in the OS close
+	// event being sent.
+	browser_count_--;
+	if (browser_count_ > 0)
+	{
+		HWND hWnd = browser->GetHost()->GetWindowHandle();
+		SetParent(hWnd, NULL);
+	}
+	return false;
 }
 
 void ClientHandler::OnBeforeClose(CefRefPtr<CefBrowser> browser) {
   CEF_REQUIRE_UI_THREAD();
-
-  if (--browser_count_ == 0) {
-    // Remove and delete message router handlers.
-    MessageHandlerSet::const_iterator it = message_handler_set_.begin();
-    for (; it != message_handler_set_.end(); ++it) {
-      message_router_->RemoveHandler(*(it));
-      delete *(it);
-    }
-    message_handler_set_.clear();
-    message_router_ = NULL;
-  }
 
   NotifyBrowserClosed(browser);
 }
@@ -644,6 +625,20 @@ void ClientHandler::OnLoadingStateChange(CefRefPtr<CefBrowser> browser,
   }
 
   NotifyLoadingState(isLoading, canGoBack, canGoForward);
+}
+
+void ClientHandler::OnLoadStart(CefRefPtr<CefBrowser> browser, CefRefPtr<CefFrame> frame, TransitionType transition_type)
+{
+	CEF_REQUIRE_UI_THREAD();
+	if (delegate_)
+		delegate_->OnLoadStart(browser, frame, transition_type);
+}
+
+void ClientHandler::OnLoadEnd(CefRefPtr<CefBrowser> browser, CefRefPtr<CefFrame> frame, int httpStatusCode)
+{
+	CEF_REQUIRE_UI_THREAD();
+	if (delegate_)
+		delegate_->OnLoadEnd(browser, frame, httpStatusCode);
 }
 
 void ClientHandler::OnLoadError(CefRefPtr<CefBrowser> browser,
@@ -669,15 +664,18 @@ void ClientHandler::OnLoadError(CefRefPtr<CefBrowser> browser,
   LoadErrorPage(frame, failedUrl, errorCode, errorText);
 }
 
+//Return true to cancel the navigation or false to allow the navigation to proceed
 bool ClientHandler::OnBeforeBrowse(CefRefPtr<CefBrowser> browser,
                                    CefRefPtr<CefFrame> frame,
                                    CefRefPtr<CefRequest> request,
                                    bool user_gesture,
-                                   bool is_redirect) {
-  CEF_REQUIRE_UI_THREAD();
-
-  message_router_->OnBeforeBrowse(browser, frame);
-  return false;
+                                   bool is_redirect) 
+{
+	CEF_REQUIRE_UI_THREAD();
+	CefString url = request->GetURL();
+	if (delegate_)
+		return delegate_->OnBeforeBrowse(browser, url);
+	return false;
 }
 
 bool ClientHandler::OnOpenURLFromTab(
@@ -817,7 +815,7 @@ void ClientHandler::OnRenderProcessTerminated(CefRefPtr<CefBrowser> browser,
                                               TerminationStatus status) {
   CEF_REQUIRE_UI_THREAD();
 
-  message_router_->OnRenderProcessTerminated(browser);
+  //message_router_->OnRenderProcessTerminated(browser);
 
   // Don't reload if there's no start URL, or if the crash URL was specified.
   if (startup_url_.empty() || startup_url_ == "chrome://crash")
@@ -913,8 +911,10 @@ void ClientHandler::ShowDevTools(CefRefPtr<CefBrowser> browser, const CefPoint& 
   if (!has_devtools) {
     // Create a new RootWindow for the DevTools browser that will be created
     // by ShowDevTools().
-    has_devtools = CreatePopupWindow(browser, true, CefPopupFeatures(),
-                                     windowInfo, client, settings);
+//  	  has_devtools = CreatePopupWindow(browser, true, CefPopupFeatures(),
+//  		  windowInfo, client, settings);
+	  if (delegate_)
+		  has_devtools = delegate_->OnShowDevTools(browser, windowInfo, client, settings);
   }
 
   if (has_devtools) {
@@ -925,8 +925,11 @@ void ClientHandler::ShowDevTools(CefRefPtr<CefBrowser> browser, const CefPoint& 
   }
 }
 
-void ClientHandler::CloseDevTools(CefRefPtr<CefBrowser> browser) {
-  browser->GetHost()->CloseDevTools();
+void ClientHandler::CloseDevTools(CefRefPtr<CefBrowser> browser) 
+{
+	browser->GetHost()->CloseDevTools();
+	if (delegate_)
+		delegate_->OnCloseDevTools();
 }
 
 bool ClientHandler::HasSSLInformation(CefRefPtr<CefBrowser> browser) {
@@ -1127,43 +1130,6 @@ void ClientHandler::NotifyTakeFocus(bool next) {
 
   if (delegate_)
     delegate_->OnTakeFocus(next);
-}
-
-void ClientHandler::BuildTestMenu(CefRefPtr<CefMenuModel> model) {
-  if (model->GetCount() > 0)
-    model->AddSeparator();
-
-  // Build the sub menu.
-  CefRefPtr<CefMenuModel> submenu =
-      model->AddSubMenu(CLIENT_ID_TESTMENU_SUBMENU, "Context Menu Test");
-  submenu->AddCheckItem(CLIENT_ID_TESTMENU_CHECKITEM, "Check Item");
-  submenu->AddRadioItem(CLIENT_ID_TESTMENU_RADIOITEM1, "Radio Item 1", 0);
-  submenu->AddRadioItem(CLIENT_ID_TESTMENU_RADIOITEM2, "Radio Item 2", 0);
-  submenu->AddRadioItem(CLIENT_ID_TESTMENU_RADIOITEM3, "Radio Item 3", 0);
-
-  // Check the check item.
-  if (test_menu_state_.check_item)
-    submenu->SetChecked(CLIENT_ID_TESTMENU_CHECKITEM, true);
-
-  // Check the selected radio item.
-  submenu->SetChecked(
-      CLIENT_ID_TESTMENU_RADIOITEM1 + test_menu_state_.radio_item, true);
-}
-
-bool ClientHandler::ExecuteTestMenu(int command_id) {
-  if (command_id == CLIENT_ID_TESTMENU_CHECKITEM) {
-    // Toggle the check item.
-    test_menu_state_.check_item ^= 1;
-    return true;
-  } else if (command_id >= CLIENT_ID_TESTMENU_RADIOITEM1 &&
-             command_id <= CLIENT_ID_TESTMENU_RADIOITEM3) {
-    // Store the selected radio item.
-    test_menu_state_.radio_item = (command_id - CLIENT_ID_TESTMENU_RADIOITEM1);
-    return true;
-  }
-
-  // Allow default handling to proceed.
-  return false;
 }
 
 }  // namespace client

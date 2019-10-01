@@ -9,36 +9,27 @@ HANDLE GetTokenByPid( DWORD dwPid )
 	HANDLE hProcess	  = NULL;
 	HANDLE hToken     = NULL;
 	PSECURITY_DESCRIPTOR pSD = NULL;
-	try 
+	while(TRUE)
 	{	
 		hProcess = OpenProcess(PROCESS_QUERY_INFORMATION, FALSE, dwPid);
-		if ( NULL == hProcess )
-			throw L"";
+		if (NULL == hProcess)
+			break;
 		if (!OpenProcessToken(hProcess, TOKEN_ALL_ACCESS, &hToken)) 
-			throw L"";
+			break;
 		pSD = (PSECURITY_DESCRIPTOR) GlobalAlloc(GPTR, SECURITY_DESCRIPTOR_MIN_LENGTH);
 		if (pSD == NULL) 
-			throw L"";
+			break;
 		if (!InitializeSecurityDescriptor(pSD, SECURITY_DESCRIPTOR_REVISION)) 
-			throw L"";
+			break;
 		if (!SetSecurityDescriptorDacl(pSD, TRUE, (PACL) NULL, FALSE)) 
-			throw L"";
+			break;
 		SECURITY_ATTRIBUTES sa;
 		sa.nLength              = sizeof(sa);
 		sa.lpSecurityDescriptor = pSD;
 		sa.bInheritHandle       = TRUE;
-		if ( !DuplicateTokenEx(hToken, TOKEN_ALL_ACCESS, &sa, \
-			SecurityImpersonation, TokenPrimary, &hRetToken) ) 
-			throw L"";
+		DuplicateTokenEx(hToken, TOKEN_ALL_ACCESS, &sa, SecurityImpersonation, TokenPrimary, &hRetToken);
+		break;
 	} 
-	catch(const TCHAR* pMsg)
-	{
-
-	}
-	catch(...) 
-	{
-
-	}
 	if ( hToken )
 		CloseHandle(hToken);
 	if ( hProcess )

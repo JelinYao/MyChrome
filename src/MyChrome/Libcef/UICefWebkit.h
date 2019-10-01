@@ -63,15 +63,17 @@ protected:
 	virtual void OnSetLoadingState(bool isLoading, bool canGoBack, bool canGoForward);
 	virtual void OnSetDraggableRegions(const std::vector<CefDraggableRegion>& regions);
 	virtual bool OnOpenNewUrl(const std::wstring& url);
-	virtual void OnLoadStart(CefRefPtr<CefBrowser> browser, CefRefPtr<CefFrame> frame);
+	virtual void OnLoadStart(CefRefPtr<CefBrowser> browser, CefRefPtr<CefFrame> frame, CefLoadHandler::TransitionType transition_type);
 	virtual void OnLoadEnd(CefRefPtr<CefBrowser> browser, CefRefPtr<CefFrame> frame, int nHttpCode);
 	virtual void OnLoadError(CefRefPtr<CefBrowser> browser, CefRefPtr<CefFrame> frame, int errorCode, const std::wstring& errorText, const std::wstring& failedUrl);
 	virtual void OnStatusMessage(const std::wstring& msg);
-	virtual bool OnBeforeBrowse(CefRefPtr<CefBrowser> browser, const std::wstring& url);
+	virtual bool OnBeforeBrowse(CefRefPtr<CefBrowser> browser, const CefString& url);
 	virtual bool OnShowDevTools(CefRefPtr<CefBrowser> browser, CefWindowInfo& wndInfo, CefRefPtr<CefClient>& client, CefBrowserSettings& setting);
+	virtual void OnCloseDevTools();
 	virtual void OnAutoResize(const CefSize& new_size);
 
 private:
+	HWND m_hWndDev;
 	wstring	m_strHomePage;
 	wstring	m_strTitle;
 	void*	m_lpCallbackData;

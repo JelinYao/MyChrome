@@ -36,9 +36,11 @@ public:
 	virtual void OnAutoResize(const CefSize& new_size) {}
 
 	// Set the loading state.
-	virtual void OnSetLoadingState(bool isLoading,
-		bool canGoBack,
-		bool canGoForward) {}
+	virtual void OnSetLoadingState(bool isLoading, bool canGoBack, bool canGoForward) {}
+
+	virtual void OnLoadStart(CefRefPtr<CefBrowser> browser, CefRefPtr<CefFrame> frame, CefLoadHandler::TransitionType transition_type) {}
+
+	virtual void OnLoadEnd(CefRefPtr<CefBrowser> browser, CefRefPtr<CefFrame> frame, int httpStatusCode) {}
 
 	// Set the draggable regions.
 	virtual void OnSetDraggableRegions(
@@ -49,6 +51,14 @@ public:
 
 	// Called on the UI thread before a context menu is displayed.
 	virtual void OnBeforeContextMenu(CefRefPtr<CefMenuModel> model) {}
+
+	virtual bool OnShowDevTools(CefRefPtr<CefBrowser> browser, CefWindowInfo& wndInfo, CefRefPtr<CefClient>& client, CefBrowserSettings& setting) { return false; }
+
+	virtual void OnCloseDevTools() {}
+
+	virtual bool OnOpenNewUrl(const std::wstring& url) { return false; }
+
+	virtual bool OnBeforeBrowse(CefRefPtr<CefBrowser> browser, const CefString& url) { return false; }
 
 protected:
 	virtual ~Delegate() {}
