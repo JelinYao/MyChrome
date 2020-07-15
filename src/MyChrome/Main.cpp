@@ -53,7 +53,6 @@ INT WINAPI wWinMain( __in HINSTANCE hInstance, __in_opt HINSTANCE hPrevInstance,
 	//settings.single_process = 0;
 	scoped_ptr<MainMessageLoop> message_loop;
 	message_loop.reset(new MainMessageLoopStd);
-
 	CefInitialize(main_args, settings, app, sandbox_info);
 	CPaintManagerUI::SetInstance(hInstance);
 	CWndShadow::Initialize(hInstance);
@@ -61,7 +60,6 @@ INT WINAPI wWinMain( __in HINSTANCE hInstance, __in_opt HINSTANCE hPrevInstance,
 	pWnd->Create(NULL, SOFT_NAME, UI_WNDSTYLE_FRAME, 0);
 	pWnd->CenterWindow();
 	pWnd->ShowWindow();
-	::ShowWindow(pWnd->GetHWND(), SW_SHOWMAXIMIZED);
 	int result = message_loop->Run();
 	CefShutdown();
 	message_loop.reset();

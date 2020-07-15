@@ -54,6 +54,29 @@ LRESULT CMainWnd::HandleCustomMessage( UINT uMsg, WPARAM wParam, LPARAM lParam, 
 	case WM_TIMER:
 		OnTimer(wParam, lParam);
 		break;
+	case WM_MOUSEWHEEL: {
+		int fwKeys = GET_KEYSTATE_WPARAM(wParam);
+		int zDelta = GET_WHEEL_DELTA_WPARAM(wParam);
+		if (fwKeys&MK_CONTROL) {
+			CChromePage* web = GetCurrentSelPage();
+			if (web) {
+				int ratio = web->GetWebkit()->GetZoomRatio();
+				if (zDelta == 120) {
+					ratio += 10;
+				}
+				else {
+					ratio -= 10;
+				}
+				if (web->GetWebkit()->SetZoomRatio(ratio))
+				{
+					CDuiString text;
+					text.Format(L"Ëõ·Å±ÈÀý£º%d%%", ratio);
+					SetStatus(text);
+				}
+			}
+		}
+		break;
+	}
 	}
 	return 0;
 }

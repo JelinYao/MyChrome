@@ -35,22 +35,24 @@ public:
 	virtual void	SetInternVisible(bool bVisible = true);
 	HWND	GetHostWnd();
 	wstring	GetLoadingUrl();
-	void	Close();
-	void	SetWebloadCallback(CCefWebCallback* pCallback, void* lpParam);
-	void	ExecuteJavascript(const wstring& strCode);
-	CefRefPtr<CefBrowser>	GetBrowser();
-	CefRefPtr<CefFrame>		GetMainFrame();
-	client::ClientHandler* GetCefHandle()											{ return m_cefHandles.get(); }
-	bool	CanGoBack()																{ return (m_pWebBrowser.get())?m_pWebBrowser->CanGoBack():false; }
-	void	SetTitle(LPCTSTR lpTitle)												{ m_strTitle = lpTitle; }
-	const wstring&	GetTitle()const													{ return m_strTitle; }
-	bool	IsTitleEmpty()const														{ return m_strTitle.empty(); }
-	void	MoveWindow(int x, int y, int nWidth, int nHeight, BOOL bRePaint);
-	void	Navigate(LPCTSTR lpUrl);
-	void	Refresh();
-	void	Reload();
-	void	GoBack();
-	void	GoForward();
+	void Close();
+	void SetWebloadCallback(CCefWebCallback* pCallback, void* lpParam);
+	void ExecuteJavascript(const wstring& strCode);
+	CefRefPtr<CefBrowser> GetBrowser();
+	CefRefPtr<CefFrame>	GetMainFrame();
+	client::ClientHandler* GetCefHandle() { return m_cefHandles.get(); }
+	bool CanGoBack() { return (m_pWebBrowser.get())?m_pWebBrowser->CanGoBack():false; }
+	void SetTitle(LPCTSTR lpTitle) { m_strTitle = lpTitle; }
+	const wstring&	GetTitle()const	{ return m_strTitle; }
+	bool IsTitleEmpty()const { return m_strTitle.empty(); }
+	void MoveWindow(int x, int y, int nWidth, int nHeight, BOOL bRePaint);
+	void Navigate(LPCTSTR lpUrl);
+	void Refresh();
+	void Reload();
+	void GoBack();
+	void GoForward();
+	bool SetZoomRatio(int ratio);
+	int GetZoomRatio() { return m_zoomRatio; }
 
 protected:
 
@@ -73,6 +75,7 @@ protected:
 	virtual void OnAutoResize(const CefSize& new_size);
 
 private:
+	int m_zoomRatio;
 	HWND m_hWndDev;
 	wstring	m_strHomePage;
 	wstring	m_strTitle;

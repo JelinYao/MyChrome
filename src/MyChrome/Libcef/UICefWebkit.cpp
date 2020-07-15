@@ -9,6 +9,7 @@ CCefWebkitUI::CCefWebkitUI(LPCTSTR lpUrl /*= L""*/)
 , m_cefHandles(new client::ClientHandler(this, false, ""))
 , m_lpCallbackData(NULL)
 , m_pCallback(NULL)
+, m_zoomRatio(100)
 {
 
 }
@@ -162,6 +163,30 @@ void CCefWebkitUI::GoForward()
 	if (m_pWebBrowser.get() && m_pWebBrowser->CanGoForward())
 		m_pWebBrowser->GoForward();
 }
+
+/*
+参考 https://www.magpcss.org/ceforum/viewtopic.php?f=6&t=11491#p20284
+/*https://www.mycode.net.cn/language/cpp/2636.html
+*/
+bool CCefWebkitUI::SetZoomRatio(int ratio)
+{
+	if (ratio > 500 || ratio < 25) {
+		//Chrome浏览器：最大缩放500%，最小25%
+		return false;
+	}
+	m_zoomRatio = ratio;
+	if (m_pWebBrowser.get()) {
+		CefRefPtr<CefBrowserHost> host = m_pWebBrowser->GetHost();
+		if (host.get()) {
+			//缩放比例转换成zoom delta
+			double delta = (double(m_zoomRatio - 100)) / 25.0;
+			host->SetZoomLevel(delta);
+			return true;
+		}
+	}
+	return false;
+}
+
 // void CCefWebkitUI::CookieTest()
 // {
 // 	CefRefPtr<CefCookieManager> pManager = CefCookieManager::GetGlobalManager(NULL);
