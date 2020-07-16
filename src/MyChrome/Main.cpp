@@ -15,7 +15,7 @@ CAtlFileMapping<ShareData>	g_bShareInit;
 
 INT WINAPI wWinMain( __in HINSTANCE hInstance, __in_opt HINSTANCE hPrevInstance, __in LPWSTR lpCmdLine, __in int nShowCmd )
 {
-	CefEnableHighDPISupport();
+	//CefEnableHighDPISupport();
 	CefMainArgs main_args(hInstance);
 	CefRefPtr<CefCommandLine> command_line = CefCommandLine::CreateCommandLine();
 	command_line->InitFromString(::GetCommandLineW());
@@ -60,7 +60,6 @@ INT WINAPI wWinMain( __in HINSTANCE hInstance, __in_opt HINSTANCE hPrevInstance,
 	settings.single_process = 0;
 	scoped_ptr<MainMessageLoop> message_loop;
 	message_loop.reset(new MainMessageLoopStd);
-
 	CefInitialize(main_args, settings, app, sandbox_info);
 	CPaintManagerUI::SetInstance(hInstance);
 	CWndShadow::Initialize(hInstance);
@@ -70,7 +69,6 @@ INT WINAPI wWinMain( __in HINSTANCE hInstance, __in_opt HINSTANCE hPrevInstance,
 	pWnd->ShowWindow();
 	g_bShareInit.MapSharedMem(sizeof(ShareData), g_szShareGuid);
 	((ShareData*)g_bShareInit)->hWnd = pWnd->GetHWND();
-	::ShowWindow(pWnd->GetHWND(), SW_SHOWMAXIMIZED);
 	int result = message_loop->Run();
 	CefShutdown();
 	message_loop.reset();

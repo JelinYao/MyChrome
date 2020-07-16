@@ -9,6 +9,7 @@ CCefWebkitUI::CCefWebkitUI(LPCTSTR lpUrl /*= L""*/)
 , m_cefHandles(new CCefHandler(this, ""))
 , m_lpCallbackData(NULL)
 , m_pCallback(NULL)
+, m_zoomRatio(100)
 {
 
 }
@@ -162,6 +163,30 @@ void CCefWebkitUI::GoForward()
 	if (m_pWebBrowser.get() && m_pWebBrowser->CanGoForward())
 		m_pWebBrowser->GoForward();
 }
+
+/*
+参考 https://www.magpcss.org/ceforum/viewtopic.php?f=6&t=11491#p20284
+/*https://www.mycode.net.cn/language/cpp/2636.html
+*/
+bool CCefWebkitUI::SetZoomRatio(int ratio)
+{
+	if (ratio > 500 || ratio < 25) {
+		//Chrome浏览器：最大缩放500%，最小25%
+		return false;
+	}
+	m_zoomRatio = ratio;
+	if (m_pWebBrowser.get()) {
+		CefRefPtr<CefBrowserHost> host = m_pWebBrowser->GetHost();
+		if (host.get()) {
+			//缩放比例转换成zoom delta
+			double delta = (double(m_zoomRatio - 100)) / 25.0;
+			host->SetZoomLevel(delta);
+			return true;
+		}
+	}
+	return false;
+}
+
 // void CCefWebkitUI::CookieTest()
 // {
 // 	CefRefPtr<CefCookieManager> pManager = CefCookieManager::GetGlobalManager(NULL);
@@ -237,7 +262,7 @@ void CCefWebkitUI::OnLoadEnd(CefRefPtr<CefBrowser> browser, CefRefPtr<CefFrame> 
 void CCefWebkitUI::OnLoadError(CefRefPtr<CefBrowser> browser, CefRefPtr<CefFrame> frame, int errorCode, const std::wstring& errorText, const std::wstring& failedUrl)
 {
 	if (m_pCallback)
-		m_pCallback->OnLoadError(this, m_lpCallbackData, frame);
+		m_pCallback->OnLoadError(this, m_lpCallbackData, frame, errorCode, errorText, failedUrl);
 }
 
 void CCefWebkitUI::OnStatusMessage(const std::wstring& msg)
@@ -252,17 +277,3 @@ bool CCefWebkitUI::OnBeforeBrowse(CefRefPtr<CefBrowser> browser, const std::wstr
 		return m_pCallback->OnBeforeBrowse(this, m_lpCallbackData, browser, url);
 	return false;
 }
-
-bool CCefWebkitUI::OnShowDevTools(CefRefPtr<CefBrowser> browser, CefWindowInfo& wndInfo, CefRefPtr<CefClient>& client, CefBrowserSettings& setting)
-{
-	CWin32Wnd* pWnd = new CWin32Wnd;
-	if (!pWnd->Create(CPaintManagerUI::GetInstance(), m_pManager->GetPaintWindow()))
-		return false;
-	pWnd->CenterWindow();
-	pWnd->Show();
-	//return pWnd->CreateBrowserWnd(client, wndInfo, setting, L"");
-	return pWnd->ShowBrowserHostWnd(browser, wndInfo, client, setting);
-}
-
-//CefRefPtr<CCefHandler> CCefWebkitUI::m_cefHandles;
-

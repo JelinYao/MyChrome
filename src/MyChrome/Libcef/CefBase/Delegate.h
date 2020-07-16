@@ -37,8 +37,6 @@ public:
 
 	virtual void OnStatusMessage(const std::wstring& msg) {}
 
-	virtual bool OnShowDevTools(CefRefPtr<CefBrowser> browser, CefWindowInfo& wndInfo, CefRefPtr<CefClient>& client, CefBrowserSettings& setting) { return false; }
-
 protected:
 	virtual ~Delegate() {}
 };

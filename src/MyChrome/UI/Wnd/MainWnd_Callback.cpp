@@ -47,7 +47,7 @@ void CMainWnd::OnLoadEnd(CCefWebkitUI* pWeb, void* lpParam, CefRefPtr<CefBrowser
 	// 	browser->SendProcessMessage(PID_RENDERER, pMsg);
 }
 
-void CMainWnd::OnLoadError(CCefWebkitUI* pWeb, void* lpParam, CefRefPtr<CefFrame> pFrame)
+void CMainWnd::OnLoadError(CCefWebkitUI* pWeb, void* lpParam, CefRefPtr<CefFrame> pFrame, int errorCode, const std::wstring& errorText, const std::wstring& failedUrl)
 {
 	CChromePage* pChromePage = (CChromePage*)lpParam;
 	int nIndex = m_pTabWeb->GetItemIndex(pChromePage);
@@ -55,11 +55,14 @@ void CMainWnd::OnLoadError(CCefWebkitUI* pWeb, void* lpParam, CefRefPtr<CefFrame
 		return;
 	pChromePage->UpdateLoadState(Wls_Error);
 	m_pTabBar->SetItemText(nIndex, L"Ò³Ãæ¼ÓÔØÊ§°Ü");
-	wstring strErrorHtml = g_strExePath + L"Html\\error.htm";
-	if (PathFileExists(strErrorHtml.c_str()))
-	{
-		pWeb->Navigate(strErrorHtml.c_str());
-	}
+	CDuiString text;
+	text.Format(L"%s¼ÓÔØÊ§°Ü£¬error code: %d", failedUrl.c_str(), errorCode);
+	SetStatus(text);
+// 	wstring strErrorHtml = g_strExePath + L"Html\\error.htm";
+// 	if (PathFileExists(strErrorHtml.c_str()))
+// 	{
+// 		pWeb->Navigate(strErrorHtml.c_str());
+// 	}
 }
 
 void CMainWnd::OnSetAddress(CCefWebkitUI* pWeb, void* lpParam, const std::wstring& url)

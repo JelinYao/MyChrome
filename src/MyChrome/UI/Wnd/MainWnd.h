@@ -27,7 +27,7 @@ protected:
 	//ÍøÒ³¼ÓÔØ×´Ì¬»Øµ÷
 	virtual void OnLoadStart(CCefWebkitUI* pWeb, void* lpParam);
 	virtual void OnLoadEnd(CCefWebkitUI* pWeb, void* lpParam, CefRefPtr<CefBrowser> browser);
-	virtual void OnLoadError(CCefWebkitUI* pWeb, void* lpParam, CefRefPtr<CefFrame> pFrame);
+	virtual void OnLoadError(CCefWebkitUI* pWeb, void* lpParam, CefRefPtr<CefFrame> pFrame, int errorCode, const std::wstring& errorText, const std::wstring& failedUrl);
 	virtual void OnSetAddress(CCefWebkitUI* pWeb, void* lpParam, const std::wstring& url);
 	virtual void OnSetTitle(CCefWebkitUI* pWeb, void* lpParam, const std::wstring& title);
 	virtual bool OnOpenNewUrl(CCefWebkitUI* pWeb, void* lpParam, const std::wstring& url);

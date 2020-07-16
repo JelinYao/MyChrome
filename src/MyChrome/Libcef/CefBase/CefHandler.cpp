@@ -538,17 +538,12 @@ void CCefHandler::OnRenderProcessTerminated(CefRefPtr<CefBrowser> browser, Termi
 
 void CCefHandler::ShowDevTools(CefRefPtr<CefBrowser> browser, const CefPoint& inspect_element_at) 
 {
-	if (delegate_)
-	{
-		CefWindowInfo windowInfo;
-		CefRefPtr<CefClient> client;
-		CefBrowserSettings settings;
-		if (delegate_->OnShowDevTools(browser, windowInfo, client, settings))
-		{
-			CefRefPtr<CefBrowserHost> pHost = browser->GetHost();
-			browser->GetHost()->ShowDevTools(windowInfo, client, settings, inspect_element_at);
-		}
-	}
+	CefWindowInfo windowInfo;
+	CefBrowserSettings settings;
+#if defined(OS_WIN)
+	windowInfo.SetAsPopup(browser->GetHost()->GetWindowHandle(), L"DevTool");
+#endif
+	browser->GetHost()->ShowDevTools(windowInfo, browser->GetHost()->GetClient(), settings, inspect_element_at);
 }
 
 void CCefHandler::CloseDevTools(CefRefPtr<CefBrowser> browser) 

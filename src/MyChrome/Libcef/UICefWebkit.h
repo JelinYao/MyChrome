@@ -12,7 +12,7 @@ class CCefWebCallback
 public:
 	virtual void OnLoadStart(CCefWebkitUI* pWeb, void* lpParam)									= 0;
 	virtual void OnLoadEnd(CCefWebkitUI* pWeb, void* lpParam, CefRefPtr<CefBrowser> browser)	= 0;
-	virtual void OnLoadError(CCefWebkitUI* pWeb, void* lpParam, CefRefPtr<CefFrame> pFrame)		= 0;
+	virtual void OnLoadError(CCefWebkitUI* pWeb, void* lpParam, CefRefPtr<CefFrame> pFrame, int errorCode, const std::wstring& errorText, const std::wstring& failedUrl)		= 0;
 	virtual void OnSetAddress(CCefWebkitUI* pWeb, void* lpParam, const std::wstring& url)		= 0;
 	virtual void OnSetTitle(CCefWebkitUI* pWeb, void* lpParam, const std::wstring& title)		= 0;
 	virtual bool OnOpenNewUrl(CCefWebkitUI* pWeb, void* lpParam, const std::wstring& url)		= 0;
@@ -43,17 +43,19 @@ public:
 	void	ExecuteJavascript(const wstring& strCode);
 	CefRefPtr<CefBrowser>	GetBrowser();
 	CefRefPtr<CefFrame>		GetMainFrame();
-	CCefHandler* GetCefHandle()														{ return m_cefHandles.get(); }
-	bool	CanGoBack()																{ return (m_pWebBrowser.get())?m_pWebBrowser->CanGoBack():false; }
-	void	SetTitle(LPCTSTR lpTitle)												{ m_strTitle = lpTitle; }
-	const wstring&	GetTitle()const													{ return m_strTitle; }
-	bool	IsTitleEmpty()const														{ return m_strTitle.empty(); }
-	void	MoveWindow(int x, int y, int nWidth, int nHeight, BOOL bRePaint);
-	void	Navigate(LPCTSTR lpUrl);
-	void	Refresh();
-	void	Reload();
-	void	GoBack();
-	void	GoForward();
+	CCefHandler* GetCefHandle()	{ return m_cefHandles.get(); }
+	bool CanGoBack() { return (m_pWebBrowser.get())?m_pWebBrowser->CanGoBack():false; }
+	void SetTitle(LPCTSTR lpTitle) { m_strTitle = lpTitle; }
+	const wstring& GetTitle()const { return m_strTitle; }
+	bool IsTitleEmpty()const { return m_strTitle.empty(); }
+	void MoveWindow(int x, int y, int nWidth, int nHeight, BOOL bRePaint);
+	void Navigate(LPCTSTR lpUrl);
+	void Refresh();
+	void Reload();
+	void GoBack();
+	void GoForward();
+	bool SetZoomRatio(int ratio);
+	int GetZoomRatio() { return m_zoomRatio; }
 
 protected:
 
@@ -69,9 +71,9 @@ protected:
 	virtual void OnLoadError(CefRefPtr<CefBrowser> browser, CefRefPtr<CefFrame> frame, int errorCode, const std::wstring& errorText, const std::wstring& failedUrl);
 	virtual void OnStatusMessage(const std::wstring& msg);
 	virtual bool OnBeforeBrowse(CefRefPtr<CefBrowser> browser, const std::wstring& url);
-	virtual bool OnShowDevTools(CefRefPtr<CefBrowser> browser, CefWindowInfo& wndInfo, CefRefPtr<CefClient>& client, CefBrowserSettings& setting);
 
 private:
+	int m_zoomRatio;//ÍøÒ³Ëõ·Å±ÈÀý
 	wstring	m_strHomePage;
 	wstring	m_strTitle;
 	void*	m_lpCallbackData;
